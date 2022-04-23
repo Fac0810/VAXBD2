@@ -4,5 +4,7 @@ public class VaxException extends Exception {
 
 	public VaxException(String message) {
 		super(message);
+	//comentarios
+		
 	}
 }
