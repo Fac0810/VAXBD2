@@ -1,5 +1,6 @@
 package ar.edu.unlp.info.bd2.services;
-import ar.edu.unlp.info.bd2.model.*;
+import ar.edu.unlp.info.bd2.model.VaccinationSchedule;
+import ar.edu.unlp.info.bd2.model.Vaccine;
 import ar.edu.unlp.info.bd2.repositories.VaxException;
 
 import java.util.Date;
