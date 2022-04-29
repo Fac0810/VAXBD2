@@ -1,6 +1,6 @@
 package ar.edu.unlp.info.bd2.model;
 
-import java.time.LocalDate;;
+import java.time.LocalDate;
 
 public class Shot {
 
@@ -14,8 +14,8 @@ public class Shot {
         this.paciente= aPatient;
         this.vacuna= aVaccine;
         this.fecha= LocalDate.now();
-        
-        //crea un ShotCertificate
+        //todavia hay que persistir el certificado, sino es inaccesible;
+        ShotCertificate certificado = ShotCertificate.new();
     }
     
     public Patient getPaciente() {
