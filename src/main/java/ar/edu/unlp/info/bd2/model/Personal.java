@@ -1,41 +1,40 @@
 package ar.edu.unlp.info.bd2.model;
 
 
-import org.springframework.data.annotation.Id;
 import java.util.Collection;
 
 public class Personal {
-    private String nombreCompleto;
-    private Integer dni;
-    private Collection<Center> centros;
+    private String fullName;
+    private String dni;
+    private Collection<Centre> centres;
 
-    public Personal(String nombreCompleto, Integer dni, Collection<Center> centros) {
-        this.nombreCompleto = nombreCompleto;
+    public Personal(String fullName, String dni, Collection<Centre> centres) {
+        this.fullName = fullName;
         this.dni = dni;
-        this.centros = centros;
+        this.centres = centres;
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public Integer getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(Integer dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
-    public Collection<Center> getCentros() {
-        return centros;
+    public Collection<Centre> getCentres() {
+        return centres;
     }
 
-    public void setCentros(Collection<Center> centros) {
-        this.centros = centros;
+    public void setCentres(Collection<Centre> centres) {
+        this.centres = centres;
     }
 }
