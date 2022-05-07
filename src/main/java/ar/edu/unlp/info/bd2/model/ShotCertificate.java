@@ -1,16 +1,16 @@
 package ar.edu.unlp.info.bd2.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.lang.Math;
 
 public class ShotCertificate {
 
 	private Long id;
-	private LocalDate fecha;
+	private Date fecha;
 	private Double numSerie;
 	
-	public ShotCertificate() {
-		this.fecha= LocalDate.now();
+	public ShotCertificate(Date fecha) {
+		this.fecha= fecha;
 		this.numSerie = Math.random();
 	}
 	
@@ -18,11 +18,11 @@ public class ShotCertificate {
     	return this.id;
     }
 	
-	public Double getNumSerie() {
+	public Double getSerialNumber() {
 		return this.numSerie;
 	}
 	
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return this.fecha;
 	}
 	
