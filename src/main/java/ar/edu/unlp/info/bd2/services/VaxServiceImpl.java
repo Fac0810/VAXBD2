@@ -42,19 +42,21 @@ public class VaxServiceImpl implements VaxService{
     public Centre createCentre(String name) throws VaxException {
         //Fran
         Centre c = new Centre(name);
-        return this.repository.createCentre();
+        return (Centre)this.repository.save(c);
     }
 
     @Override
     public Nurse createNurse(String dni, String fullName, Integer experience) throws VaxException {
         //Fran
-        return null;
+        Nurse n = new Nurse(fullName,dni, experience);
+        return (Nurse) this.repository.save(n);
     }
 
     @Override
     public SupportStaff createSupportStaff(String dni, String fullName, String area) throws VaxException {
         //Fran
-        return null;
+        SupportStaff s = new SupportStaff(fullName,dni,area);
+        return (SupportStaff)this.repository.save(s);
     }
 
     @Override

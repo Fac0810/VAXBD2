@@ -11,8 +11,8 @@ public class Nurse extends Personal{
 
     public Nurse() {
     }
-    public Nurse(String fullName, String dni, Collection<Centre> centres, Integer experience) {
-        super(fullName, dni, centres);
+    public Nurse(String fullName, String dni,  Integer experience) {
+        super(fullName, dni);
         this.experience = experience;
     }
 

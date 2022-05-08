@@ -19,10 +19,9 @@ public class Personal {
     public Personal() {
     }
 
-    public Personal(String fullName, String dni, Collection<Centre> centres) {
+    public Personal(String fullName, String dni) {
         this.fullName = fullName;
         this.dni = dni;
-        this.centres = centres;
     }
     public Long getId() {
         return id;

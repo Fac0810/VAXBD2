@@ -17,11 +17,11 @@ public class VaxRepository {
     public Session getSession() {
         return this.sessionFactory.getCurrentSession();
     }
-
-    public Centre createCentre(String name) throws VaxException {
-
-        return null;
+    public Object save(Object object) {
+        getSession().save(object);
+        return object;
     }
+
     public Optional<SupportStaff> getSupportStaffByDni(String dni) {
 
         return getSession().createQuery
