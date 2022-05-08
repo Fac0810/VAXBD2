@@ -3,6 +3,7 @@ import ar.edu.unlp.info.bd2.model.*;
 import ar.edu.unlp.info.bd2.repositories.VaxException;
 import ar.edu.unlp.info.bd2.repositories.VaxRepository;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Vaccine createVaccine(String name) throws VaxException {
-        return null;
+        return Vaccine.new(name);
     }
 
     @Override
@@ -55,7 +56,8 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public VaccinationSchedule createVaccinationSchedule() throws VaxException {
-        return null;
+        Collection<Vaccine> vaxList;
+        return VaccinationSchedule.new(vaxList);
     }
 
     @Override
