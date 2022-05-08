@@ -1,46 +1,64 @@
 package ar.edu.unlp.info.bd2.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
+import javax.persistence.*;
+
+
+@Entity(name="Shot")
 public class Shot {
 
-	private Patient paciente;
-	private Vaccine vacuna;
-	private LocalDate fecha;
-	//private Centre centro;
-	//private Nurse aplicante;
+	@Id
+	@GeneratedValue
+	private Long id;
 	
-    public Shot(Patient aPatient, Vaccine aVaccine) {
-        this.paciente= aPatient;
-        this.vacuna= aVaccine;
-        this.fecha= LocalDate.now();
-        //todavia hay que persistir el certificado, sino es inaccesible;
-        ShotCertificate certificado = ShotCertificate.new();
+	private Patient patient;
+	private Vaccine vaccine;
+	private Date date;
+	private Centre centre;
+	private Nurse nurse;
+	private ShotCertificate certificate;
+	
+    public Shot(Patient aPatient, Vaccine aVaccine, Date aDate, Centre aCentre, Nurse aNurse) {
+        this.patient= aPatient;
+        this.vaccine= aVaccine;
+        this.date= aDate;
+        this.centre= aCentre;
+        this.nurse= aNurse;
+        this.certificate= new ShotCertificate(date);
+        this.patient.addShot(this);
     }
     
-    public Patient getPaciente() {
-    	return this.paciente;
+    public Long getId() {
+    	return this.id;
+    }
+    
+    public Patient getPatient() {
+    	return this.patient;
     }
 	
-    public Vaccine getVacuna() {
-    	return this.vacuna;
+    public Vaccine getVaccine() {
+    	return this.vaccine;
     }
     
-    public LocalDate getFecha() {
-    	return this.fecha;
+    public Date getDate() {
+    	return this.date;
     }
     
-    /*
-    public Centre getCentro() {
-    	return this.centro;
+    
+    public Centre getCentre() {
+    	return this.centre;
     }
     
-    public Nurse getAplicante() {
-    	return this.aplicante
+    public Nurse getNurse() {
+    	return this.nurse;
     }
     
-     
-     */
+    public ShotCertificate getShotCertificate() {
+    	return this.certificate;
+    }
+    
      
     
 }
+

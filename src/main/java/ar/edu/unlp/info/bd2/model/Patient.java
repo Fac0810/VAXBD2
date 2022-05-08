@@ -1,30 +1,60 @@
 package ar.edu.unlp.info.bd2.model;
 
+import java.util.Date;
+import java.util.Collection;
+import java.util.ArrayList;
+
+import javax.persistence.*;
+
+@Entity(name="Patient")
 public class Patient {
-    private String firstName;
-    private String lastName;
-    private Integer DNI;
+	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+    private String fullName;
+    private String email;
+    private String password;
+    private Date dob;
+    private Collection<Shot> shots;
+    
 
-    public Patient(String aFirstName, String aLastName, Integer aDNI) {
-        this.firstName = aFirstName;
-        this.lastName = aLastName;
-        this.DNI = aDNI;
-    }
-
-    public String getFirstName() {
-        return this.firstName;
+    public Patient(String aEmail, String aFullname, String aPassword, Date aDob) {
+        this.fullName = aFullname;
+        this.email = aEmail;
+        this.password = aPassword;
+        this.dob = aDob;
+        this.shots = new ArrayList<Shot>();
     }
     
-    public String getLastName() {
-        return this.lastName;
+    public Long getId() {
+    	return this.id;
+    }
+
+    public String getEmail() {
+    	return this.email;
     }
     
-    public Integer getDNI() {
-        return this.DNI;
+    public String getFullname() {
+    	return this.fullName;
+    }
+    
+    public String getPassword() {
+    	return this.password;
     }
 
+    public Date getDayOfBirth() {
+    	return this.dob;
+    }
 
-
+    public void addShot(Shot shot) {
+    	this.shots.add(shot);
+    }
+    
+    public Collection<Shot> getShots() {
+    	return this.shots;
+    }
 
 
 }
