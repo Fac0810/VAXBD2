@@ -40,16 +40,20 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Centre createCentre(String name) throws VaxException {
-        return null;
+        //Fran
+        Centre c = new Centre(name);
+        return this.repository.createCentre();
     }
 
     @Override
     public Nurse createNurse(String dni, String fullName, Integer experience) throws VaxException {
+        //Fran
         return null;
     }
 
     @Override
     public SupportStaff createSupportStaff(String dni, String fullName, String area) throws VaxException {
+        //Fran
         return null;
     }
 
@@ -65,21 +69,27 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Optional<Centre> getCentreByName(String name) throws VaxException {
+        //Fran
         return Optional.empty();
     }
 
     @Override
     public SupportStaff updateSupportStaff(SupportStaff staff) throws VaxException {
+        //Fran
         return null;
     }
 
     @Override
     public Centre updateCentre(Centre centre) {
+
         return null;
     }
+    //Fran
 
     @Override
     public Optional<SupportStaff> getSupportStaffByDni(String dni) {
-        return Optional.empty();
+
+        return this.repository.getSupportStaffByDni(dni);
     }
+    //Fran
 }
