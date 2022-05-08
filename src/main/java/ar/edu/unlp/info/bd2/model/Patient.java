@@ -4,9 +4,15 @@ import java.util.Date;
 import java.util.Collection;
 import java.util.ArrayList;
 
+import javax.persistence.*;
+
+@Entity(name="Patient")
 public class Patient {
 	
+	@Id
+	@GeneratedValue
 	private Long id;
+	
     private String fullName;
     private String email;
     private String password;

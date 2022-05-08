@@ -3,9 +3,16 @@ package ar.edu.unlp.info.bd2.model;
 import java.util.Date;
 import java.lang.Math;
 
+import javax.persistence.*;
+
+
+@Entity(name="ShotCertificate")
 public class ShotCertificate {
 
+	@Id
+	@GeneratedValue
 	private Long id;
+
 	private Date fecha;
 	private Double numSerie;
 	

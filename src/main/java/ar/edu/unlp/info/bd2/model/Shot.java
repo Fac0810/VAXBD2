@@ -2,9 +2,16 @@ package ar.edu.unlp.info.bd2.model;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+
+@Entity(name="Shot")
 public class Shot {
 
+	@Id
+	@GeneratedValue
 	private Long id;
+	
 	private Patient patient;
 	private Vaccine vaccine;
 	private Date date;
