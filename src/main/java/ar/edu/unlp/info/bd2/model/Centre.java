@@ -1,19 +1,40 @@
 package ar.edu.unlp.info.bd2.model;
 import java.util.Collection;
+import javax.persistence.*;
 
+@Entity
+@Table ( name  = "centre")
 public class Centre {
+    @Id
+    @Column( name = "id", nullable = false)
+    private Integer id;
+
+    @Column( name = "name")
     private String name;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "centre_personal",
+            joinColumns = {@JoinColumn(name = "centreId")},
+            inverseJoinColumns = {@JoinColumn(name = "personalId")}
+    )
     private Collection<Personal> staff;
 
-
-    public void setId(Interger id) {
-        this.id = id;
+    public Centre() {
     }
-
     public Centre(String name, Collection<Personal> staff) {
         this.name = name;
         this.staff = staff;
     }
+
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public Integer getId() {
+        return id;
+    }
+
+
 
     public String getName() {
         return name;
