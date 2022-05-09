@@ -1,7 +1,5 @@
 package ar.edu.unlp.info.bd2.repositories;
 
-import ar.edu.unlp.info.bd2.model.SupportStaff;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +34,12 @@ public class VaxRepository {
     }
 	*/
 
+	public Optional<Patient> getPatientByEmail(String email) {
+        return getSession().createQuery
+                ("from Patient pat where pat.email = email").setParameter("email", email).getResultList()
+        .stream().findFirst();
+    }
+    
     public Optional<Vaccine> getVaccineByName(String name) {
 
         return getSession().createQuery
@@ -47,7 +51,7 @@ public class VaxRepository {
         return getSession().createQuery(
                 "from VaccinationSchedule vaxSchedule where vaxSchedule.id = id").setParameter("id", id).getResultList()
                 .stream().findFirst();
-        )
+        
     }
 
 

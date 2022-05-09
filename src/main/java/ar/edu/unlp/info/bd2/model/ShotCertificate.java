@@ -13,7 +13,10 @@ public class ShotCertificate {
 	@GeneratedValue
 	private Long id;
 
+	@Column(name = "fecha")
 	private Date fecha;
+	
+	@Column(name = "numSerie")
 	private Double numSerie;
 	
 	public ShotCertificate(Date fecha) {
