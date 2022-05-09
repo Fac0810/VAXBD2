@@ -9,7 +9,7 @@ import java.util.Collection;
 public class VaccinationSchedule {
 
     @Id
-    private Integer id;
+    private Long id;
 
     private Collection<Vaccine> schedule;
 

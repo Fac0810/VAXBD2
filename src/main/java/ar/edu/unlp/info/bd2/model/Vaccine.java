@@ -10,7 +10,7 @@ public class Vaccine {
     private String name;
 
     @Id
-    private Integer id;
+    private Long id;
 
     public Vaccine(String aName) {
         this.name = aName;
