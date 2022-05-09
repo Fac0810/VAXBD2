@@ -3,8 +3,11 @@ import ar.edu.unlp.info.bd2.model.*;
 import ar.edu.unlp.info.bd2.repositories.VaxException;
 import ar.edu.unlp.info.bd2.repositories.VaxRepository;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.Optional;
+
+
 
 public class VaxServiceImpl implements VaxService{
     private VaxRepository repository;
@@ -15,21 +18,36 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Patient createPatient(String email, String fullname, String password, Date dayOfBirth) throws VaxException {
-        return null;
+    	Patient patient = new Patient(email, fullname, password, dayOfBirth);
+    	try {
+    		repository.save(patient);
+    	}
+    	catch(Exception e){
+    		throw new VaxException("Constraint Violation");
+    	}
+        return patient;
     }
 
     @Override
     public Vaccine createVaccine(String name) throws VaxException {
-        return null;
+        return Vaccine.new(name);
     }
 
     @Override
     public Shot createShot(Patient patient, Vaccine vaccine, Date date, Centre centre, Nurse nurse) throws VaxException {
-        return null;
+    	Shot shot = new Shot(patient, vaccine, date, centre, nurse);
+    	try {
+    		repository.save(shot);
+    	}
+    	catch(Exception e){
+    		throw new VaxException("Constraint Violation");
+    	}
+        return shot;
     }
 
     @Override
     public Optional<Patient> getPatientByEmail(String email) {
+    	
         return Optional.empty();
     }
 
@@ -42,26 +60,47 @@ public class VaxServiceImpl implements VaxService{
     public Centre createCentre(String name) throws VaxException {
         //Fran
         Centre c = new Centre(name);
-        return (Centre)this.repository.save(c);
+        try {
+            this.repository.save(c);
+        }
+        catch(Exception e){
+            throw new VaxException("Constraint Violation");
+        }
+
+        return c;
     }
 
     @Override
     public Nurse createNurse(String dni, String fullName, Integer experience) throws VaxException {
         //Fran
         Nurse n = new Nurse(fullName,dni, experience);
-        return (Nurse) this.repository.save(n);
+        try {
+            this.repository.save(n);
+        }
+        catch(Exception e){
+            throw new VaxException("Constraint Violation");
+        }
+        return n ;
     }
 
     @Override
     public SupportStaff createSupportStaff(String dni, String fullName, String area) throws VaxException {
         //Fran
         SupportStaff s = new SupportStaff(fullName,dni,area);
-        return (SupportStaff)this.repository.save(s);
+        try {
+            this.repository.save(s);
+        }
+        catch(Exception e){
+            throw new VaxException("Constraint Violation");
+        }
+
+        return s;
     }
 
     @Override
     public VaccinationSchedule createVaccinationSchedule() throws VaxException {
-        return null;
+        Collection<Vaccine> vaxList;
+        return VaccinationSchedule.new(vaxList);
     }
 
     @Override
@@ -72,19 +111,26 @@ public class VaxServiceImpl implements VaxService{
     @Override
     public Optional<Centre> getCentreByName(String name) throws VaxException {
         //Fran
-        return Optional.empty();
+        return this.repository.getCentreByName(name);
     }
 
     @Override
     public SupportStaff updateSupportStaff(SupportStaff staff) throws VaxException {
         //Fran
-        return null;
+        try {
+            this.repository.save(staff);
+        }
+        catch(Exception e){
+            throw new VaxException("Constraint Violation");
+        }
+
+        return staff;
     }
 
     @Override
-    public Centre updateCentre(Centre centre) {
-
-        return null;
+    public Centre updateCentre(Centre centre){
+        this.repository.save(centre);
+        return centre;
     }
     //Fran
 
