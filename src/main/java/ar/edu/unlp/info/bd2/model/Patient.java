@@ -13,10 +13,20 @@ public class Patient {
 	@GeneratedValue
 	private Long id;
 	
+	@Column(name ="fullName")
     private String fullName;
+	
+	@Column(name = "email")
     private String email;
+	
+	@Column(name = "password")
     private String password;
+	
+	@Column(name = "dob")
     private Date dob;
+    
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "patient_id")
     private Collection<Shot> shots;
     
 

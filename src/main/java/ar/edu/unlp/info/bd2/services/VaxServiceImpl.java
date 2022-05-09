@@ -52,7 +52,7 @@ public class VaxServiceImpl implements VaxService{
     @Override
     public Optional<Patient> getPatientByEmail(String email) {
     	
-        return Optional.empty();
+        return this.repository.getPatientByEmail(email);
     }
 
     @Override

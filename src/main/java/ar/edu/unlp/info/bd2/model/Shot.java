@@ -12,11 +12,22 @@ public class Shot {
 	@GeneratedValue
 	private Long id;
 	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Patient patient;
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Vaccine vaccine;
+	
+	@Column(name="date")
 	private Date date;
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Centre centre;
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Nurse nurse;
+	
+	@OneToOne
 	private ShotCertificate certificate;
 	
     public Shot(Patient aPatient, Vaccine aVaccine, Date aDate, Centre aCentre, Nurse aNurse) {
