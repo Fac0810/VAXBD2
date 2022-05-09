@@ -11,8 +11,8 @@ public class SupportStaff extends Personal{
     public SupportStaff() {
     }
 
-    public SupportStaff(String nombreCompleto, String dni, Collection<Centre> centros, String area) {
-        super(nombreCompleto, dni, centros);
+    public SupportStaff(String nombreCompleto, String dni, String area) {
+        super(nombreCompleto, dni);
         this.area = area;
     }
 

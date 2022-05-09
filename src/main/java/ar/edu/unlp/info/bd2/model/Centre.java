@@ -21,9 +21,8 @@ public class Centre {
 
     public Centre() {
     }
-    public Centre(String name, Collection<Personal> staff) {
+    public Centre(String name) {
         this.name = name;
-        this.staff = staff;
     }
 
 
