@@ -20,16 +20,15 @@ public class VaxRepository {
 
     
     public void save(Object o) {
-    	try {
-    		this.sessionFactory.getCurrentSession().saveOrUpdate(o);
-    	}
-    	catch (Exception e) {
-    		this.sessionFactory.getCurrentSession().clear();
-    		throw e;
-    	}
+        try {
+            this.sessionFactory.getCurrentSession().saveOrUpdate(o);
+        } catch (Exception e) {
+            this.sessionFactory.getCurrentSession().clear();
+            throw e;
+        }
 
     }
-        /*
+ /*
     public Object save(Object object) {
         getSession().save(object);
         return object;
