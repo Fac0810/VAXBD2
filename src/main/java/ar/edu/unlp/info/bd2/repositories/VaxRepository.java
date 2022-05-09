@@ -23,7 +23,7 @@ public class VaxRepository {
     		this.sessionFactory.getCurrentSession().clear();
     		throw e;
     	}
-
+    }
 
     public Session getSession() {
         return this.sessionFactory.getCurrentSession();
