@@ -28,16 +28,14 @@ public class VaxRepository {
     		throw e;
     	}
 
-
-
-    /*
+    }
+        /*
     public Object save(Object object) {
         getSession().save(object);
         return object;
     }
 	*/
 
-}
 
     public Optional<SupportStaff> getSupportStaffByDni(String dni) {
         return getSession().createQuery
