@@ -18,7 +18,7 @@ public class VaxRepository {
         return this.sessionFactory.getCurrentSession();
     }
 
-    
+
     public void save(Object o) {
         try {
             this.sessionFactory.getCurrentSession().saveOrUpdate(o);
@@ -28,12 +28,27 @@ public class VaxRepository {
         }
 
     }
- /*
+
+    /*
     public Object save(Object object) {
         getSession().save(object);
         return object;
     }
 	*/
+
+    public Optional<Vaccine> getVaccineByName(String name) {
+
+        return getSession().createQuery
+                        ("from Vaccine vax where vax.name = name").setParameter("name", name).getResultList()
+                .stream().findFirst();
+    }
+
+    public Optional<VaccinationSchedule> getVaccinationScheduleByID(Long id) {
+        return getSession().createQuery(
+                "from VaccinationSchedule vaxSchedule where vaxSchedule.id = id").setParameter("id", id).getResultList()
+                .stream().findFirst();
+        )
+    }
 
 
     public Optional<SupportStaff> getSupportStaffByDni(String dni) {
