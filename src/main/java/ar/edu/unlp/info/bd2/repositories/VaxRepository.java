@@ -17,9 +17,17 @@ public class VaxRepository {
     public Session getSession() {
         return this.sessionFactory.getCurrentSession();
     }
+
     public Object save(Object object) {
         getSession().save(object);
         return object;
+    }
+
+    public Optional<Vaccine> getVaccineByName(String name) {
+
+        return getSession().createQuery
+                        ("from Vaccine vax where vax.name = name").setParameter("name", name).getResultList()
+                .stream().findFirst();
     }
 
     public Optional<SupportStaff> getSupportStaffByDni(String dni) {

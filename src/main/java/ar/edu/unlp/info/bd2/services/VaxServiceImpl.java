@@ -21,7 +21,8 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Vaccine createVaccine(String name) throws VaxException {
-        return Vaccine.new(name);
+        Vaccine vaccine = new Vaccine(name);
+        return (Vaccine)this.repository.save(vaccine);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Optional<Vaccine> getVaccineByName(String name) {
-        return Optional.empty();
+        return this.repository.getVaccineByName(name);
     }
 
     @Override
