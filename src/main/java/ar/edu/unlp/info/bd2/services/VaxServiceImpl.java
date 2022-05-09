@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Optional;
 
+
+
 public class VaxServiceImpl implements VaxService{
     private VaxRepository repository;
 
@@ -16,7 +18,14 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Patient createPatient(String email, String fullname, String password, Date dayOfBirth) throws VaxException {
-        return null;
+    	Patient patient = new Patient(email, fullname, password, dayOfBirth);
+    	try {
+    		repository.save(patient);
+    	}
+    	catch(Exception e){
+    		throw new VaxException("Constraint Violation");
+    	}
+        return patient;
     }
 
     @Override
@@ -27,11 +36,19 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Shot createShot(Patient patient, Vaccine vaccine, Date date, Centre centre, Nurse nurse) throws VaxException {
-        return null;
+    	Shot shot = new Shot(patient, vaccine, date, centre, nurse);
+    	try {
+    		repository.save(shot);
+    	}
+    	catch(Exception e){
+    		throw new VaxException("Constraint Violation");
+    	}
+        return shot;
     }
 
     @Override
     public Optional<Patient> getPatientByEmail(String email) {
+    	
         return Optional.empty();
     }
 
