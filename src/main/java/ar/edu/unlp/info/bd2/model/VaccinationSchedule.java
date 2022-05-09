@@ -1,8 +1,8 @@
 package ar.edu.unlp.info.bd2.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -11,19 +11,20 @@ public class VaccinationSchedule {
     @Id
     private Long id;
 
-    private Collection<Vaccine> schedule;
+    @ManyToOne
+    private ArrayList<Vaccine> schedule;
 
-    public VaccinationSchedule(Collection<Vaccine> aSchedule) {
+    public VaccinationSchedule(ArrayList<Vaccine> aSchedule) {
         this.schedule = aSchedule;
     }
 
     @Column(name="ID")
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
     @Column(name="Schedule")
-    public Collection<Vaccine> getVaccines() {
+    public ArrayList<Vaccine> getVaccines() {
         return this.schedule;
     }
 

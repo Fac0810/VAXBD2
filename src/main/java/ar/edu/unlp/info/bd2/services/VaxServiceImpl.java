@@ -3,11 +3,7 @@ import ar.edu.unlp.info.bd2.model.*;
 import ar.edu.unlp.info.bd2.repositories.VaxException;
 import ar.edu.unlp.info.bd2.repositories.VaxRepository;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Optional;
-
+import java.util.*;
 
 
 public class VaxServiceImpl implements VaxService{
@@ -32,7 +28,13 @@ public class VaxServiceImpl implements VaxService{
     @Override
     public Vaccine createVaccine(String name) throws VaxException {
         Vaccine vaccine = new Vaccine(name);
-        return (Vaccine)this.repository.save(vaccine);
+        try {
+            repository.save(vaccine);
+        }
+        catch(Exception e){
+            throw new VaxException("Constraint Violation");
+        }
+        return vaccine;
     }
 
     @Override
@@ -101,8 +103,15 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public VaccinationSchedule createVaccinationSchedule() throws VaxException {
-        Collection<Vaccine> vaxList = new Collection<Vaccine>
-        return (VaccinationSchedule)this.repository.save(new VaccinationSchedule(vaxList));
+        ArrayList<Vaccine> vaxList = new ArrayList<Vaccine>();
+        VaccinationSchedule vaxSchedule = new VaccinationSchedule(vaxList);
+        try {
+            repository.save(vaxSchedule);
+        }
+        catch(Exception e){
+            throw new VaxException("Constraint Violation");
+        }
+        return vaxSchedule;
     }
 
     @Override
