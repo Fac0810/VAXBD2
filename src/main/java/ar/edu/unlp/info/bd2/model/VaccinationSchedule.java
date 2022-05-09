@@ -9,6 +9,7 @@ import java.util.Collection;
 public class VaccinationSchedule {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     @ManyToOne

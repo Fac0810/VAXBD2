@@ -7,6 +7,7 @@ import java.util.Collection;
 @DiscriminatorColumn(name = "personal_type", discriminatorType = DiscriminatorType.INTEGER)
 public class Personal {
     @Id
+    @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long id;
     @Column( name = "fullName")

@@ -3,9 +3,9 @@ import java.util.Collection;
 import javax.persistence.*;
 
 @Entity
-@Table ( name  = "nurse")
-@DiscriminatorValue("3")
+@DiscriminatorValue("nurse")
 public class Nurse extends Personal{
+
     @Column(name= "experience")
     private Integer experience;
 

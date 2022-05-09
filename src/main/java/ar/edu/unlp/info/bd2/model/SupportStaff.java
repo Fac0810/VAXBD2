@@ -1,9 +1,9 @@
 package ar.edu.unlp.info.bd2.model;
 import java.util.Collection;
 import javax.persistence.*;
+
 @Entity
-@Table ( name  = "supportStaff")
-@DiscriminatorValue("2")
+@DiscriminatorValue("supportstaff")
 public class SupportStaff extends Personal{
     @Column(name = "area")
     private String area;

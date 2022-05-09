@@ -12,19 +12,19 @@ public class Shot {
 	@GeneratedValue
 	private Long id;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@ManyToOne
 	private Patient patient;
-	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @ManyToOne
 	private Vaccine vaccine;
 	
 	@Column(name="date")
 	private Date date;
-	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @ManyToOne
 	private Centre centre;
-	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @ManyToOne
 	private Nurse nurse;
 	
 	@OneToOne

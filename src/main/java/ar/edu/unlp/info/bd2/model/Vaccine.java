@@ -8,6 +8,7 @@ public class Vaccine {
     private String name;
 
     @Id
+    @GeneratedValue
     private Long id;
 
     public Vaccine(String aName) {

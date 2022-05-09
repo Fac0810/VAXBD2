@@ -6,6 +6,7 @@ import javax.persistence.*;
 @Table ( name  = "centre")
 public class Centre {
     @Id
+    @GeneratedValue
     @Column( name = "id", nullable = false)
     private Integer id;
 

@@ -43,8 +43,7 @@ public class VaxRepository {
     public Optional<Vaccine> getVaccineByName(String name) {
 
         return getSession().createQuery
-                        ("from Vaccine vax where vax.name = name").setParameter("name", name).getResultList()
-                .stream().findFirst();
+                        ("from Vaccine vax where vax.name = name").setParameter("name", name).uniqueResultOptional();
     }
 
     public VaccinationSchedule getVaccinationScheduleByID(Long id) {
