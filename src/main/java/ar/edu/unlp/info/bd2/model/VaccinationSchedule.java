@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class VaccinationSchedule {
@@ -12,10 +13,10 @@ public class VaccinationSchedule {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    private ArrayList<Vaccine> schedule;
+    @OneToMany
+    private List<Vaccine> schedule;
 
-    public VaccinationSchedule(ArrayList<Vaccine> aSchedule) {
+    public VaccinationSchedule(List<Vaccine> aSchedule) {
         this.schedule = aSchedule;
     }
 
@@ -25,7 +26,7 @@ public class VaccinationSchedule {
     }
 
     @Column(name="Schedule")
-    public ArrayList<Vaccine> getVaccines() {
+    public List<Vaccine> getVaccines() {
         return this.schedule;
     }
 

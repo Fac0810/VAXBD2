@@ -36,8 +36,7 @@ public class VaxRepository {
 
 	public Optional<Patient> getPatientByEmail(String email) {
         return getSession().createQuery
-                ("from Patient pat where pat.email = email").setParameter("email", email).getResultList()
-        .stream().findFirst();
+                ("from Patient pat where pat.email = email").setParameter("email", email).uniqueResultOptional();
     }
     
     public Optional<Vaccine> getVaccineByName(String name) {
@@ -56,14 +55,13 @@ public class VaxRepository {
 
     public Optional<SupportStaff> getSupportStaffByDni(String dni) {
         return getSession().createQuery
-                        ("from SupportStaff sup where sup.dni = dni").setParameter("dni", dni).getResultList()
-                .stream().findFirst();
+                        ("from SupportStaff sup where sup.dni = dni").setParameter("dni", dni).uniqueResultOptional();
 
     }
     public Optional<Centre> getCentreByName(String name) {
         //Fran
         return this.getSession().createQuery("from Centre c where c.name = name")
-                .setParameter("name",name).stream().findFirst();
+                .setParameter("name",name).uniqueResultOptional();
     }
 
 }
