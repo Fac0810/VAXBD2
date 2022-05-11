@@ -27,12 +27,6 @@ public class VaxRepository {
 
     }
 
-    /*
-    public Object save(Object object) {
-        getSession().save(object);
-        return object;
-    }
-	*/
 
 	public Optional<Patient> getPatientByEmail(String email) {
         return getSession().createQuery

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 @Entity( name  = "personal")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "personal_type", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(name = "personal_type", discriminatorType = DiscriminatorType.STRING)
 public class Personal {
     @Id
     @GeneratedValue

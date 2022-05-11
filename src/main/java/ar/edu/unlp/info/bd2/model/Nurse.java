@@ -3,7 +3,7 @@ import java.util.Collection;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue("NURSE")
+@DiscriminatorValue("nurse")
 public class Nurse extends Personal{
 
     @Column(name= "experience")
