@@ -22,6 +22,7 @@ public class VaxRepository {
             this.sessionFactory.getCurrentSession().saveOrUpdate(o);
         } catch (Exception e) {
             this.sessionFactory.getCurrentSession().clear();
+            VaxException ex = new VaxException("Constraint Violation");
             throw e;
         }
 
@@ -30,18 +31,18 @@ public class VaxRepository {
 
 	public Optional<Patient> getPatientByEmail(String email) {
         return getSession().createQuery
-                ("from Patient pat where pat.email = email").setParameter("email", email).uniqueResultOptional();
+                ("from Patient pat where pat.email = :email").setParameter("email", email).uniqueResultOptional();
     }
     
     public Optional<Vaccine> getVaccineByName(String name) {
 
         return getSession().createQuery
-                        ("from Vaccine vax where vax.name = name").setParameter("name", name).uniqueResultOptional();
+                        ("from Vaccine vax where vax.name = :name").setParameter("name", name).uniqueResultOptional();
     }
 
     public VaccinationSchedule getVaccinationScheduleByID(Long id) {
         return (VaccinationSchedule) getSession().createQuery(
-                "from VaccinationSchedule vaxSchedule where vaxSchedule.id = id").setParameter("id", id).getResultList()
+                "from VaccinationSchedule vaxSchedule where vaxSchedule.id = :id").setParameter("id", id).getResultList()
                 .stream().findFirst().get();
 
     }
@@ -49,12 +50,12 @@ public class VaxRepository {
 
     public Optional<SupportStaff> getSupportStaffByDni(String dni) {
         return getSession().createQuery
-                        ("from SupportStaff sup where sup.dni = dni").setParameter("dni", dni).uniqueResultOptional();
+                        ("from SupportStaff sup where sup.dni = :dni").setParameter("dni", dni).uniqueResultOptional();
 
     }
     public Optional<Centre> getCentreByName(String name) {
         //Fran
-        return this.getSession().createQuery("from Centre c where c.name = name")
+        return this.getSession().createQuery("from Centre c where c.name = :name")
                 .setParameter("name",name).uniqueResultOptional();
     }
 

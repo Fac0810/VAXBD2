@@ -19,6 +19,7 @@ public class VaxServiceImpl implements VaxService{
     	Patient patient = new Patient(email, fullname, password, dayOfBirth);
     	try {
     		repository.save(patient);
+
     	}
     	catch(Exception e){
     		throw new VaxException("Constraint Violation");

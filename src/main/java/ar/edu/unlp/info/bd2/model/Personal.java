@@ -1,6 +1,7 @@
 package ar.edu.unlp.info.bd2.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
 @Entity( name  = "personal")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -23,6 +24,7 @@ public class Personal {
     public Personal(String fullName, String dni) {
         this.fullName = fullName;
         this.dni = dni;
+        this.centres = new ArrayList<Centre>();
     }
     public Long getId() {
         return id;
@@ -54,5 +56,9 @@ public class Personal {
 
     public void setCentres(Collection<Centre> centres) {
         this.centres = centres;
+    }
+
+    public void addCentre(Centre centre){
+        this.centres.add(centre);
     }
 }

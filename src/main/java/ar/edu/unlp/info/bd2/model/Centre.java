@@ -1,4 +1,5 @@
 package ar.edu.unlp.info.bd2.model;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.*;
 
@@ -7,7 +8,6 @@ import javax.persistence.*;
 public class Centre {
     @Id
     @GeneratedValue
-    @Column( name = "id", nullable = false)
     private Integer id;
 
     @Column( name = "name")
@@ -24,6 +24,7 @@ public class Centre {
     }
     public Centre(String name) {
         this.name = name;
+        this.staff = new ArrayList<>();
     }
 
 
@@ -54,5 +55,6 @@ public class Centre {
 
     public void addStaff(Personal staff) {
         this.staff.add(staff);
+        staff.addCentre(this);// se agrega esto porque me lo pide los test
     }
 }
