@@ -13,11 +13,17 @@ public class VaccinationSchedule {
     @GeneratedValue
     private Long id;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "vaccinationschedule_vaccine",
+            joinColumns = {@JoinColumn(name = "vaccinationscheduleId")},
+            inverseJoinColumns = {@JoinColumn(name = "vaccineId")}
+    )
     private List<Vaccine> schedule;
 
-    public VaccinationSchedule(List<Vaccine> aSchedule) {
-        this.schedule = aSchedule;
+
+    public VaccinationSchedule() {
+        this.schedule = new ArrayList<Vaccine>();
     }
 
     @Column(name="ID")

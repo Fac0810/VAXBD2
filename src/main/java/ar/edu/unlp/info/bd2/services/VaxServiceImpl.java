@@ -16,27 +16,42 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Patient createPatient(String email, String fullname, String password, Date dayOfBirth) throws VaxException {
-    	Patient patient = new Patient(email, fullname, password, dayOfBirth);
-    	try {
-    		repository.save(patient);
 
-    	}
-    	catch(Exception e){
-    		throw new VaxException("Constraint Violation");
-    	}
+        if (this.repository.getPatienteByEmail(email) != null) {
+            throw new VaxException("Constraint Violation");
+        }
+        Patient patient = new Patient(email, fullname, password, dayOfBirth);
+        repository.save(patient);
+
         return patient;
+        /*Patient patient = new Patient(email, fullname, password, dayOfBirth);
+        try {
+            repository.save(patient);
+        }
+        catch(Exception e){
+            throw new VaxException("Constraint Violation");
+        }
+        return patient;*/
     }
 
     @Override
     public Vaccine createVaccine(String name) throws VaxException {
+        if (this.repository.getVaccineByNameUnique(name) != null) {
+            throw new VaxException("Constraint Violation");
+        }
+
         Vaccine vaccine = new Vaccine(name);
+        repository.save(vaccine);
+
+        return vaccine;
+        /*Vaccine vaccine = new Vaccine(name);
         try {
             repository.save(vaccine);
         }
         catch(Exception e){
             throw new VaxException("Constraint Violation");
         }
-        return vaccine;
+        return vaccine;*/
     }
 
     @Override
@@ -105,8 +120,8 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public VaccinationSchedule createVaccinationSchedule() throws VaxException {
-        ArrayList<Vaccine> vaxList = new ArrayList<Vaccine>();
-        VaccinationSchedule vaxSchedule = new VaccinationSchedule(vaxList);
+
+        VaccinationSchedule vaxSchedule = new VaccinationSchedule();
         try {
             repository.save(vaxSchedule);
         }

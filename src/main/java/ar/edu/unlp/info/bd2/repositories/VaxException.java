@@ -6,4 +6,5 @@ public class VaxException extends Exception {
 		super(message);
 		//algo
 	}
+
 }

@@ -138,7 +138,7 @@ public class VaxServiceTestCase {
 		shortSchedule.addVaccine(jh);
 		shortSchedule.addVaccine(az);
 
-		try {
+		//try {
 			VaccinationSchedule savedSchedule = this.service.getVaccinationScheduleById(schedule.getId());
 			assertNotNull (savedSchedule.getId());
 			assertTrue(savedSchedule.getVaccines().contains(az));
@@ -152,10 +152,10 @@ public class VaxServiceTestCase {
 			assertTrue(savedShort.getVaccines().contains(jh));
 			assertEquals(jh, (Vaccine)savedShort.getVaccines().get(0));
 			assertEquals(az, (Vaccine)savedShort.getVaccines().get(1));
-		}
-		catch (Exception e) {
-			throw new VaxException("Schedule doesn't exists");
-		}
+		//}
+		//catch (Exception e) {
+		//	throw new VaxException("Schedule doesn't exists");
+		//}
 
 	}
 

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Optional;
 import ar.edu.unlp.info.bd2.model.*;
 
+import javax.persistence.NoResultException;
+
 public class VaxRepository {
 
     @Autowired
@@ -22,8 +24,16 @@ public class VaxRepository {
             this.sessionFactory.getCurrentSession().saveOrUpdate(o);
         } catch (Exception e) {
             this.sessionFactory.getCurrentSession().clear();
-            VaxException ex = new VaxException("Constraint Violation");
             throw e;
+        }
+
+    }
+    public Patient getPatienteByEmail(String email){
+        try {
+            return (Patient) getSession().createQuery("FROM Patient pat WHERE pat.email = :email").setParameter("email", email)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
         }
 
     }
@@ -33,17 +43,27 @@ public class VaxRepository {
         return getSession().createQuery
                 ("from Patient pat where pat.email = :email").setParameter("email", email).uniqueResultOptional();
     }
+
+    public Vaccine getVaccineByNameUnique(String name){
+        try {
+            return (Vaccine) getSession().createQuery
+                    ("from Vaccine vax where vax.name = :name").setParameter("name", name).uniqueResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+
+    }
     
     public Optional<Vaccine> getVaccineByName(String name) {
 
         return getSession().createQuery
-                        ("from Vaccine vax where vax.name = :name").setParameter("name", name).uniqueResultOptional();
+                    ("from Vaccine vax where vax.name = :name").setParameter("name", name).uniqueResultOptional();
+
     }
 
     public VaccinationSchedule getVaccinationScheduleByID(Long id) {
         return (VaccinationSchedule) getSession().createQuery(
-                "from VaccinationSchedule vaxSchedule where vaxSchedule.id = :id").setParameter("id", id).getResultList()
-                .stream().findFirst().get();
+                "from VaccinationSchedule vac where vac.id = :id").setParameter("id", id).uniqueResult();
 
     }
 
