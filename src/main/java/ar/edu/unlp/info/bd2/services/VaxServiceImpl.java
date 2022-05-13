@@ -36,7 +36,7 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Vaccine createVaccine(String name) throws VaxException {
-        if (this.repository.getVaccineByNameUnique(name) != null) {
+        if (this.repository.getVaccineByName(name).isPresent()) {
             throw new VaxException("Constraint Violation");
         }
 
@@ -79,42 +79,35 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Centre createCentre(String name) throws VaxException {
-        //Fran
-        Centre c = new Centre(name);
-        try {
-            this.repository.save(c);
-        }
-        catch(Exception e){
+        if (this.repository.getCentreByName(name).isPresent()){
             throw new VaxException("Constraint Violation");
-        }
 
+        }
+        Centre c = new Centre(name);
+        this.repository.save(c);
         return c;
     }
 
     @Override
     public Nurse createNurse(String dni, String fullName, Integer experience) throws VaxException {
         //Fran
-        Nurse n = new Nurse(fullName,dni, experience);
-        try {
-            this.repository.save(n);
-        }
-        catch(Exception e){
+
+        if (this.repository.getNurseByDni(dni) != null ){
             throw new VaxException("Constraint Violation");
         }
+        Nurse n = new Nurse(fullName,dni, experience);
+        this.repository.save(n);
         return n ;
     }
 
     @Override
     public SupportStaff createSupportStaff(String dni, String fullName, String area) throws VaxException {
         //Fran
-        SupportStaff s = new SupportStaff(fullName,dni,area);
-        try {
-            this.repository.save(s);
-        }
-        catch(Exception e){
+        if (this.repository.getSupportStaffByDni(dni).isPresent()){
             throw new VaxException("Constraint Violation");
         }
-
+        SupportStaff s = new SupportStaff(fullName,dni,area);
+        this.repository.save(s);
         return s;
     }
 

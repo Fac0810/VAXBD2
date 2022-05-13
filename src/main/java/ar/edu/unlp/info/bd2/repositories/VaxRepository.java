@@ -43,16 +43,6 @@ public class VaxRepository {
         return getSession().createQuery
                 ("from Patient pat where pat.email = :email").setParameter("email", email).uniqueResultOptional();
     }
-
-    public Vaccine getVaccineByNameUnique(String name){
-        try {
-            return (Vaccine) getSession().createQuery
-                    ("from Vaccine vax where vax.name = :name").setParameter("name", name).uniqueResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-
-    }
     
     public Optional<Vaccine> getVaccineByName(String name) {
 
@@ -77,6 +67,14 @@ public class VaxRepository {
         //Fran
         return this.getSession().createQuery("from Centre c where c.name = :name")
                 .setParameter("name",name).uniqueResultOptional();
+    }
+    public Nurse getNurseByDni(String dni){
+        try {
+            return (Nurse) getSession().createQuery("FROM Nurse n WHERE n.dni = :dni").setParameter("dni", dni)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
 }
