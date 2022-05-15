@@ -6,7 +6,7 @@ import java.util.Collection;
 @Entity( name  = "personal")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "personal_type", discriminatorType = DiscriminatorType.STRING)
-public class Personal {
+public class Staff {
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
@@ -18,10 +18,10 @@ public class Personal {
     @ManyToMany( fetch = FetchType.LAZY, cascade = CascadeType.ALL,  mappedBy = "staff")
     private Collection<Centre> centres;
 
-    public Personal() {
+    public Staff() {
     }
 
-    public Personal(String fullName, String dni) {
+    public Staff(String fullName, String dni) {
         this.fullName = fullName;
         this.dni = dni;
         this.centres = new ArrayList<Centre>();

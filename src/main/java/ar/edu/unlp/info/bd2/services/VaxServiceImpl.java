@@ -160,5 +160,55 @@ public class VaxServiceImpl implements VaxService{
 
         return this.repository.getSupportStaffByDni(dni);
     }
+
+    @Override
+    public List<Patient> getAllPatients() {
+        return null;
+    }
+
+    @Override
+    public List<Nurse> getNurseWithMoreThanNYearsExperience(int years) {
+        return null;
+    }
+
+    @Override
+    public List<Centre> getCentresTopNStaff(int n) {
+        return null;
+    }
+
+    @Override
+    public Centre getTopShotCentre() {
+        return null;
+    }
+
+    @Override
+    public List<Nurse> getNurseNotShot() {
+        return null;
+    }
+
+    @Override
+    public String getLessEmployeesSupportStaffArea() {
+        return null;
+    }
+
+    @Override
+    public List<Staff> getStaffWithName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Vaccine> getUnappliedVaccines() {
+        return null;
+    }
+
+    @Override
+    public List<ShotCertificate> getShotCertificatesBetweenDates(Date startDate, Date endDate) {
+        return null;
+    }
+
+    @Override
+    public VaccinationSchedule updateVaccinationSchedule(VaccinationSchedule vs) {
+        return null;
+    }
     //Fran
 }

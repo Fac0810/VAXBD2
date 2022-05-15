@@ -1,13 +1,20 @@
 package ar.edu.unlp.info.bd2.model;
-import java.util.Collection;
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("nurse")
-public class Nurse extends Personal{
+public class Nurse extends Staff {
 
     @Column(name= "experience")
     private Integer experience;
+
+    public Integer getExperience() {
+        return experience;
+    }
+
+    public void setExperience(Integer experience) {
+        this.experience = experience;
+    }
 
     public Nurse() {
     }

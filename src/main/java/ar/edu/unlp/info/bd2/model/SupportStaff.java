@@ -1,10 +1,9 @@
 package ar.edu.unlp.info.bd2.model;
-import java.util.Collection;
 import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("supportstaff")
-public class SupportStaff extends Personal{
+public class SupportStaff extends Staff {
     @Column(name = "area")
     private String area;
 

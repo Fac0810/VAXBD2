@@ -18,7 +18,7 @@ public class Centre {
             joinColumns = {@JoinColumn(name = "centreId")},
             inverseJoinColumns = {@JoinColumn(name = "personalId")}
     )
-    private Collection<Personal> staff;
+    private Collection<Staff> staff;
 
     public Centre() {
     }
@@ -45,15 +45,15 @@ public class Centre {
         this.name = name;
     }
 
-    public Collection<Personal> getStaffs() {
+    public Collection<Staff> getStaffs() {
         return staff;
     }
 
-    public void setStaff(Collection<Personal> staff) {
+    public void setStaff(Collection<Staff> staff) {
         this.staff = staff;
     }
 
-    public void addStaff(Personal staff) {
+    public void addStaff(Staff staff) {
         this.staff.add(staff);
         staff.addCentre(this);// se agrega esto porque me lo pide los test
     }
