@@ -4,6 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Optional;
 import ar.edu.unlp.info.bd2.model.*;
 
@@ -75,6 +76,19 @@ public class VaxRepository {
         } catch (NoResultException e) {
             return null;
         }
+    }
+    public List<Nurse> getNurseWithMoreThanNYearsExperience(int years) {
+        return getSession().createQuery("FROM Nurse n WHERE n.experience > :years").
+                setParameter("years", years).getResultList();
+        //fran
+    }
+    // @return Una lista con los <code>n</code> centros que más staff tiene
+    public List<Staff> getStaffWithName(String name) {
+        return getSession().createQuery("FROM Staff as s WHERE s.fullName like '%':name'%'")
+                .setParameter("name", name).getResultList();
+        //fran
+        //from Cat as cat where cat.mate.name like '%s%'
+        // es asi el uso del like
     }
 
 }

@@ -168,32 +168,38 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public List<Nurse> getNurseWithMoreThanNYearsExperience(int years) {
-        return null;
+        return this.repository.getNurseWithMoreThanNYearsExperience(years);
+        //fran
     }
 
     @Override
     public List<Centre> getCentresTopNStaff(int n) {
         return null;
+        //fran
     }
 
     @Override
     public Centre getTopShotCentre() {
         return null;
+
     }
 
     @Override
     public List<Nurse> getNurseNotShot() {
         return null;
+        //fran
     }
 
     @Override
     public String getLessEmployeesSupportStaffArea() {
         return null;
+        //fran
     }
 
     @Override
     public List<Staff> getStaffWithName(String name) {
         return null;
+        //fran
     }
 
     @Override
@@ -210,5 +216,4 @@ public class VaxServiceImpl implements VaxService{
     public VaccinationSchedule updateVaccinationSchedule(VaccinationSchedule vs) {
         return null;
     }
-    //Fran
 }
