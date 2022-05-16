@@ -18,13 +18,16 @@ public class ShotCertificate {
 	
 	@Column(name = "numSerie")
 	private Double numSerie;
-	
+
+	public ShotCertificate() {
+	}
+
 	public ShotCertificate(Date fecha) {
 		this.fecha= fecha;
 		this.numSerie = Math.random();
 	}
-	
-    public Long getId() {
+
+	public Long getId() {
     	return this.id;
     }
 	

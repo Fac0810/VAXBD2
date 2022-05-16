@@ -28,7 +28,10 @@ public class Patient {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "patient_id")
     private Collection<Shot> shots;
-    
+
+
+    public Patient() {
+    }
 
     public Patient(String aEmail, String aFullname, String aPassword, Date aDob) {
         this.fullName = aFullname;
@@ -37,7 +40,7 @@ public class Patient {
         this.dob = aDob;
         this.shots = new ArrayList<Shot>();
     }
-    
+
     public Long getId() {
     	return this.id;
     }

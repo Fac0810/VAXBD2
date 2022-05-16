@@ -11,6 +11,9 @@ public class Vaccine {
     @GeneratedValue
     private Long id;
 
+    public Vaccine() {
+    }
+
     public Vaccine(String aName) {
         this.name = aName;
     }

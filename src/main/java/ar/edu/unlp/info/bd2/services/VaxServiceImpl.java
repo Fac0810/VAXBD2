@@ -174,7 +174,7 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public List<Centre> getCentresTopNStaff(int n) {
-        return null;
+        return repository.getCentresTopNStaff(n);
         //fran
     }
 
@@ -186,7 +186,7 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public List<Nurse> getNurseNotShot() {
-        return null;
+        return repository.getNurseNotShot();
         //fran
     }
 
@@ -198,7 +198,7 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public List<Staff> getStaffWithName(String name) {
-        return null;
+        return repository.getStaffWithName(name);
         //fran
     }
 

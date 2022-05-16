@@ -29,7 +29,10 @@ public class Shot {
 	
 	@OneToOne
 	private ShotCertificate certificate;
-	
+
+    public Shot() {
+    }
+
     public Shot(Patient aPatient, Vaccine aVaccine, Date aDate, Centre aCentre, Nurse aNurse) {
         this.patient= aPatient;
         this.vaccine= aVaccine;
@@ -39,7 +42,7 @@ public class Shot {
         this.certificate= new ShotCertificate(date);
         this.patient.addShot(this);
     }
-    
+
     public Long getId() {
     	return this.id;
     }

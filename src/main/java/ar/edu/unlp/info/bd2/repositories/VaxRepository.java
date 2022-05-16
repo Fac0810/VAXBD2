@@ -78,17 +78,39 @@ public class VaxRepository {
         }
     }
     public List<Nurse> getNurseWithMoreThanNYearsExperience(int years) {
-        return getSession().createQuery("FROM Nurse n WHERE n.experience > :years").
-                setParameter("years", years).getResultList();
+        return getSession().createQuery("FROM Nurse n " +
+                                                  "WHERE n.experience > :years")
+                        .setParameter("years", years).getResultList();
         //fran
     }
     // @return Una lista con los <code>n</code> centros que más staff tiene
     public List<Staff> getStaffWithName(String name) {
-        return getSession().createQuery("FROM Staff as s WHERE s.fullName like '%':name'%'")
+        return getSession().createQuery("FROM Staff as s " +
+                                                   "WHERE s.fullName like '%':name'%'")
                 .setParameter("name", name).getResultList();
         //fran
         //from Cat as cat where cat.mate.name like '%s%'
         // es asi el uso del like
+    }
+    public List<Centre> getCentresTopNStaff(int n) {
+        return getSession().createQuery("SELECT c " +
+                                                  "FROM Centre c JOIN c.staff " +
+                                                  "GROUP BY c.id " +
+                                                  "ORDER BY count(c.id) desc")
+                .setMaxResults(n).getResultList();
+        //fran
+        //CONSULTAR SI ESTA BIEN LA CONSULTA
+    }
+    /**
+     * @return Una lista de los enfermeros que no aplicaron vacunas
+     */
+    public List<Nurse> getNurseNotShot() {
+        return getSession().createQuery("SELECT n " +
+                "FROM Nurse n " +
+                "WHERE n.dni not in (SELECT nur.dni " +
+                                    "FROM Shot s JOIN  s.nurse nur )").getResultList();
+        //fran
+        //
     }
 
 }
