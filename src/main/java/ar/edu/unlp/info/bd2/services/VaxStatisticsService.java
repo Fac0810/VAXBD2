@@ -1,5 +1,6 @@
 package ar.edu.unlp.info.bd2.services;
 import ar.edu.unlp.info.bd2.model.*;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.Date;
 import java.util.List;
@@ -44,6 +45,7 @@ public interface VaxStatisticsService {
     /**
      * @return Una lista de las vacunas de las que no se aplicaron dosis
      */
+    @Query("SELECT vax FROM Vaccine vaccine LEFT JOIN Shot shot ON shot.vaccine.id = vaccine.id WHERE shot.vaccine.id IS NULL")
     List<Vaccine> getUnappliedVaccines();
 
     /**
