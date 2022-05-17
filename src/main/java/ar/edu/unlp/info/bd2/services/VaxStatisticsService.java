@@ -1,6 +1,5 @@
 package ar.edu.unlp.info.bd2.services;
 import ar.edu.unlp.info.bd2.model.*;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Date;
 import java.util.List;
