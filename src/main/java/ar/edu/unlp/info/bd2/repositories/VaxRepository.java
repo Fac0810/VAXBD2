@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Optional;
 import ar.edu.unlp.info.bd2.model.*;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.NoResultException;
 
@@ -103,4 +104,12 @@ public class VaxRepository {
         //
     }
 
+    /**
+     * @return Una lista de las vacunas de las que no se aplicaron dosis
+     */
+    List<Vaccine> getUnappliedVaccines() {
+        return getSession().createQuery("SELECT vax " +
+                "FROM Vaccine vaccine LEFT JOIN Shot shot ON shot.vaccine.id = vaccine.id " +
+                "WHERE shot.vaccine.id IS NULL").getResultList();
+    }
 }
