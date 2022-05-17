@@ -17,7 +17,7 @@ public class VaxServiceImpl implements VaxService{
     @Override
     public Patient createPatient(String email, String fullname, String password, Date dayOfBirth) throws VaxException {
 
-        if (this.repository.getPatienteByEmail(email) != null) {
+        if (this.repository.getPatientByEmail(email).isPresent()) {
             throw new VaxException("Constraint Violation");
         }
         Patient patient = new Patient(email, fullname, password, dayOfBirth);
@@ -44,14 +44,6 @@ public class VaxServiceImpl implements VaxService{
         repository.save(vaccine);
 
         return vaccine;
-        /*Vaccine vaccine = new Vaccine(name);
-        try {
-            repository.save(vaccine);
-        }
-        catch(Exception e){
-            throw new VaxException("Constraint Violation");
-        }
-        return vaccine;*/
     }
 
     @Override

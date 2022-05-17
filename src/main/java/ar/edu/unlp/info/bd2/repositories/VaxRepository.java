@@ -29,16 +29,6 @@ public class VaxRepository {
         }
 
     }
-    public Patient getPatienteByEmail(String email){
-        try {
-            return (Patient) getSession().createQuery("FROM Patient pat WHERE pat.email = :email").setParameter("email", email)
-                    .getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-
-    }
-
 
 	public Optional<Patient> getPatientByEmail(String email) {
         return getSession().createQuery
