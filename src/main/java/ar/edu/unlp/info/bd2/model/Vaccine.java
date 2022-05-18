@@ -5,11 +5,12 @@ import javax.persistence.*;
 @Entity
 public class Vaccine {
 
-    private String name;
-
     @Id
     @GeneratedValue
     private Long id;
+	
+    private String name;
+
 
     public Vaccine() {
     }
@@ -18,12 +19,12 @@ public class Vaccine {
         this.name = aName;
     }
 
-    @Column(name="ID")
+    
     public Long getId() {
         return this.id;
     }
 
-    @Column(name="Name")
+    
     public String getName() {
         return this.name;
     }

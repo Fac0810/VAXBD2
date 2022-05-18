@@ -27,7 +27,7 @@ public class Shot {
     @ManyToOne
 	private Nurse nurse;
 	
-	@OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
 	private ShotCertificate certificate;
 
     public Shot() {

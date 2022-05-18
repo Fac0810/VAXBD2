@@ -15,23 +15,21 @@ public class VaccinationSchedule {
 
     @ManyToMany
     @JoinTable(
-            name = "vaccinationschedule_vaccine",
-            joinColumns = {@JoinColumn(name = "vaccinationscheduleId")},
-            inverseJoinColumns = {@JoinColumn(name = "vaccineId")}
+            name = "VaccinationSchedule_Vaccine",
+            joinColumns = {@JoinColumn(name = "vaccinationschedule_id", referencedColumnName="id")},
+            inverseJoinColumns = {@JoinColumn(name = "vaccine_id", referencedColumnName="id")}
     )
-    private List<Vaccine> schedule;
-
+    private List<Vaccine> schedule = new ArrayList<Vaccine>();
 
     public VaccinationSchedule() {
-        this.schedule = new ArrayList<Vaccine>();
+    	
     }
 
-    @Column(name="ID")
     public Long getId() {
         return id;
     }
 
-    @Column(name="Schedule")
+    
     public List<Vaccine> getVaccines() {
         return this.schedule;
     }
