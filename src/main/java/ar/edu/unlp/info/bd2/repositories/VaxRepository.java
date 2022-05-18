@@ -121,8 +121,4 @@ public class VaxRepository {
                 "ORDER BY COUNT(centre) DESC").getSingleResult();
         // joaquin + sientanse libres de modificar esto pues altas chances de que este mal :(
     }
-
-    public VaccinationSchedule updateVaccinationSchedule(VaccinationSchedule vs) {
-        return this.save(vs); //joaquin
-    }
 }
