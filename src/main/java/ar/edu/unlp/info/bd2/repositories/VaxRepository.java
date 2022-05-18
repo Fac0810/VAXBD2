@@ -92,9 +92,11 @@ public class VaxRepository {
         //fran
         //CONSULTAR SI ESTA BIEN LA CONSULTA
     }
-    /**
-     * @return Una lista de los enfermeros que no aplicaron vacunas
-     */
+
+    public List<Patient> getAllPatients() {
+        return getSession().createQuery("SELECT * from Patient").getResultList(); //joaquin
+    }
+
     public List<Nurse> getNurseNotShot() {
         return getSession().createQuery("SELECT n " +
                 "FROM Nurse n " +
@@ -110,6 +112,10 @@ public class VaxRepository {
     public List<Vaccine> getUnappliedVaccines() {
         return getSession().createQuery("SELECT vax " +
                 "FROM Vaccine vaccine LEFT JOIN Shot shot ON shot.vaccine.id = vaccine.id " +
-                "WHERE shot.vaccine.id IS NULL").getResultList();
+                "WHERE shot.vaccine.id IS NULL").getResultList(); //joaquin
+    }
+
+    public VaccinationSchedule updateVaccinationSchedule(VaccinationSchedule vs) {
+        return this.save(vs); //joaquin
     }
 }
