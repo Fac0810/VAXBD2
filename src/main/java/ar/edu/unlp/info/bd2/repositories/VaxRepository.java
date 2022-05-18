@@ -107,7 +107,7 @@ public class VaxRepository {
     /**
      * @return Una lista de las vacunas de las que no se aplicaron dosis
      */
-    List<Vaccine> getUnappliedVaccines() {
+    public List<Vaccine> getUnappliedVaccines() {
         return getSession().createQuery("SELECT vax " +
                 "FROM Vaccine vaccine LEFT JOIN Shot shot ON shot.vaccine.id = vaccine.id " +
                 "WHERE shot.vaccine.id IS NULL").getResultList();

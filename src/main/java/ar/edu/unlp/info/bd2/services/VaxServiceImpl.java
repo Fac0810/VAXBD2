@@ -196,7 +196,7 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public List<Vaccine> getUnappliedVaccines() {
-        return null;
+        return repository.getUnappliedVaccines();
     }
 
     @Override
