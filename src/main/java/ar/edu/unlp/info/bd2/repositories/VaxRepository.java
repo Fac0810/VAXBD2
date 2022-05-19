@@ -116,13 +116,15 @@ public class VaxRepository {
     }
 
     public Centre getTopShotCentre() {
-        return (Centre)getSession().createQuery("SELECT TOP 1 centre, COUNT(centre)" +
-                "FROM Shot GROUP BY centre" +
-                "ORDER BY COUNT(centre) DESC").getSingleResult();
-        // joaquin + sientanse libres de modificar esto pues altas chances de que este mal :(
-    }
+            return (Centre) getSession().createQuery("SELECT TOP 1 centre" +
+                    "FROM Shot GROUP BY centre" +
+                    "ORDER BY COUNT(centre) DESC").getSingleResult();
+            // joaquin + sientanse libres de modificar esto pues altas chances de que este mal :(
+        }
 
-    public VaccinationSchedule updateVaccinationSchedule(VaccinationSchedule vs) {
-        return this.save(vs); //joaquin
+        public VaccinationSchedule updateVaccinationSchedule (VaccinationSchedule vs){
+            this.save(vs);
+            return vs;//joaquin
+        }
+
     }
-}
