@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
 
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import ar.edu.unlp.info.bd2.model.*;
@@ -128,17 +128,16 @@ public class VaxRepository {
      * @return El area de Support Staff con menor cantidad de empleados
      */
     public String getLessEmployeesSupportStaffArea() {
-       /*List<SupportStaff> supports =  getSession().createQuery(
-
-                       "from SupportStaff s "+
-               "group by s.area "+
-               "order by count(s.area) asc").list();
-        //String area = (String) areas.get(0);
-        SupportStaff support = (SupportStaff) supports.get(0);*/
-        String hql = "from SupportStaff s group by s.area order by count(s.area) asc";
-        Query query = this.getSession().createQuery(hql);
-        List s = query.getResultList();
-
-        return "Observaciones";
+        /*List<SupportStaff> areas =  getSession().createQuery("select s "+//siempre poner un espacion al final
+                "from SupportStaff as s "+
+                "group by s.area "+
+                "order by count(s.area) asc").getResultList();
+        SupportStaff area = (SupportStaff) areas.get(0);
+        return area.getArea();*/
+        List<String> areas =  getSession().createQuery("select s.area "+//siempre poner un espacion al final
+                "from SupportStaff as s "+
+                "group by s.area "+
+                "order by count(s.area) asc").getResultList();
+        return areas.get(0);
     }
 }
