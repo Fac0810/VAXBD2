@@ -97,7 +97,7 @@ public class VaxRepository {
     }
 
     public List<Patient> getAllPatients() {
-        return getSession().createQuery("from Patient").getResultList(); //joaquin
+        return getSession().createQuery("SELECT * from Patient").getResultList(); //joaquin
     }
 
     public List<Nurse> getNurseNotShot() {
@@ -119,11 +119,17 @@ public class VaxRepository {
     }
 
     public Centre getTopShotCentre() {
-        return (Centre)getSession().createQuery("SELECT TOP 1 centre, COUNT(centre)" +
-                "FROM Shot GROUP BY centre" +
-                "ORDER BY COUNT(centre) DESC").getSingleResult();
-        // joaquin + sientanse libres de modificar esto pues altas chances de que este mal :(
-    }
+            return (Centre) getSession().createQuery("SELECT TOP 1 centre" +
+                    "FROM Shot GROUP BY centre" +
+                    "ORDER BY COUNT(centre) DESC").getSingleResult();
+            // joaquin + sientanse libres de modificar esto pues altas chances de que este mal :(
+        }
+
+        public VaccinationSchedule updateVaccinationSchedule (VaccinationSchedule vs){
+            this.save(vs);
+            return vs;//joaquin
+        }
+
     /**
      * @return El area de Support Staff con menor cantidad de empleados
      */
