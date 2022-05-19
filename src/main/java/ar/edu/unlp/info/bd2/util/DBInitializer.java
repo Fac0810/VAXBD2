@@ -5,7 +5,8 @@ import ar.edu.unlp.info.bd2.services.VaxService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.SimpleDateFormat;
-
+import javax.transaction.Transactional;
+@Transactional
 public class DBInitializer {
 
     @Autowired

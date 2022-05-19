@@ -206,6 +206,7 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public VaccinationSchedule updateVaccinationSchedule(VaccinationSchedule vs) {
-        return repository.updateVaccinationSchedule(vs);
+        this.repository.save(vs);
+        return vs;
     }
 }
