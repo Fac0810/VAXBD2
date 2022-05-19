@@ -3,11 +3,13 @@ package ar.edu.unlp.info.bd2.repositories;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import javax.persistence.*;
 
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import ar.edu.unlp.info.bd2.model.*;
-import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.NoResultException;
 
@@ -76,9 +78,10 @@ public class VaxRepository {
     }
     // @return Una lista con los <code>n</code> centros que más staff tiene
     public List<Staff> getStaffWithName(String name) {
-        return getSession().createQuery("FROM Staff as s " +
-                                                   "WHERE s.fullName like '%':name'%'")
-                .setParameter("name", name).getResultList();
+        return getSession().createQuery("FROM Staff s " +
+                                                   "WHERE s.fullName like concat('%', :name, '%')")
+                .setParameter("name",  "%" + name + "%").getResultList();
+
         //fran
         //from Cat as cat where cat.mate.name like '%s%'
         // es asi el uso del like
@@ -94,7 +97,7 @@ public class VaxRepository {
     }
 
     public List<Patient> getAllPatients() {
-        return getSession().createQuery("SELECT * from Patient").getResultList(); //joaquin
+        return getSession().createQuery("from Patient").getResultList(); //joaquin
     }
 
     public List<Nurse> getNurseNotShot() {
@@ -110,7 +113,7 @@ public class VaxRepository {
      * @return Una lista de las vacunas de las que no se aplicaron dosis
      */
     public List<Vaccine> getUnappliedVaccines() {
-        return getSession().createQuery("SELECT vax " +
+        return  getSession().createQuery("SELECT vaccine " +
                 "FROM Vaccine vaccine LEFT JOIN Shot shot ON shot.vaccine.id = vaccine.id " +
                 "WHERE shot.vaccine.id IS NULL").getResultList(); //joaquin
     }
@@ -128,3 +131,21 @@ public class VaxRepository {
         }
 
     }
+    /**
+     * @return El area de Support Staff con menor cantidad de empleados
+     */
+    public String getLessEmployeesSupportStaffArea() {
+       /*List<SupportStaff> supports =  getSession().createQuery(
+
+                       "from SupportStaff s "+
+               "group by s.area "+
+               "order by count(s.area) asc").list();
+        //String area = (String) areas.get(0);
+        SupportStaff support = (SupportStaff) supports.get(0);*/
+        String hql = "from SupportStaff s group by s.area order by count(s.area) asc";
+        Query query = this.getSession().createQuery(hql);
+        List s = query.getResultList();
+
+        return "Observaciones";
+    }
+}
