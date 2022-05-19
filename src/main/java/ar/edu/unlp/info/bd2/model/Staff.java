@@ -3,7 +3,7 @@ package ar.edu.unlp.info.bd2.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-@Entity(name = "personal")
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "personal_type", discriminatorType = DiscriminatorType.STRING)
 public class Staff {

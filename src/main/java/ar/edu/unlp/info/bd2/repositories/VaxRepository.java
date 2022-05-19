@@ -79,7 +79,7 @@ public class VaxRepository {
     // @return Una lista con los <code>n</code> centros que más staff tiene
     public List<Staff> getStaffWithName(String name) {
         return getSession().createQuery("FROM Staff s " +
-                                                   "WHERE s.fullName like concat('%', :name, '%')")
+                        "WHERE s.fullName like concat('%', :name, '%')")
                 .setParameter("name",  "%" + name + "%").getResultList();
 
         //fran
@@ -97,7 +97,7 @@ public class VaxRepository {
     }
 
     public List<Patient> getAllPatients() {
-        return getSession().createQuery("SELECT * from Patient").getResultList(); //joaquin
+        return getSession().createQuery("from Patient").getResultList(); //joaquin
     }
 
     public List<Nurse> getNurseNotShot() {
@@ -117,17 +117,15 @@ public class VaxRepository {
                 "FROM Vaccine vaccine LEFT JOIN Shot shot ON shot.vaccine.id = vaccine.id " +
                 "WHERE shot.vaccine.id IS NULL").getResultList(); //joaquin
     }
-
+    /**
+     * @return El centro que más vacunas aplico
+     */
     public Centre getTopShotCentre() {
-            return (Centre) getSession().createQuery("SELECT TOP 1 centre" +
-                    "FROM Shot GROUP BY centre" +
-                    "ORDER BY COUNT(centre) DESC").getSingleResult();
-            // joaquin + sientanse libres de modificar esto pues altas chances de que este mal :(
-        }
-
-        public VaccinationSchedule updateVaccinationSchedule (VaccinationSchedule vs){
-            this.save(vs);
-            return vs;//joaquin
+            List<Centre> c = getSession().createQuery("select s.centre " + //siempre poner un espacion al final\n" +
+                                                "from Shot s " +
+                                                "group by s.centre " +
+                                                "order by count(s.centre.id) desc").getResultList();
+            return c.get(0);
         }
 
     /**
@@ -141,7 +139,7 @@ public class VaxRepository {
         SupportStaff area = (SupportStaff) areas.get(0);
         return area.getArea();*/
         List<String> areas =  getSession().createQuery("select s.area "+//siempre poner un espacion al final
-                "from SupportStaff as s "+
+                "from SupportStaff s "+
                 "group by s.area "+
                 "order by count(s.area) asc").getResultList();
         return areas.get(0);
