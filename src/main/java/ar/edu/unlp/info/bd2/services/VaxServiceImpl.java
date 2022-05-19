@@ -155,7 +155,7 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public List<Patient> getAllPatients() {
-        return null;
+        return this.repository.getAllPatients();
     }
 
     @Override
@@ -184,7 +184,7 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public String getLessEmployeesSupportStaffArea() {
-        return null;
+        return this.repository.getLessEmployeesSupportStaffArea();
         //fran
     }
 
