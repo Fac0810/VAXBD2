@@ -5,8 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
 
-
-
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import ar.edu.unlp.info.bd2.model.*;
@@ -143,5 +142,12 @@ public class VaxRepository {
                 "group by s.area "+
                 "order by count(s.area) asc").getResultList();
         return areas.get(0);
+    }
+    
+    public List<ShotCertificate> getShotCertificatesBetweenDates(Date startDate, Date endDate){
+    	List<ShotCertificate> shotCertificates =  getSession().createQuery("from ShotCertificate s " + 
+    			"where s.fecha between :startDate " + 
+    			"and :endDate ").setParameter("startDate", startDate).setParameter("endDate", endDate).getResultList();
+        return shotCertificates;
     }
 }
