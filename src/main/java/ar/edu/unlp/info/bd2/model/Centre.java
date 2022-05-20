@@ -55,6 +55,6 @@ public class Centre {
 
     public void addStaff(Staff staff) {
         this.staff.add(staff);
-        staff.addCentre(this);// se agrega esto porque me lo pide los test
+        staff.addCentre(this);
     }
 }

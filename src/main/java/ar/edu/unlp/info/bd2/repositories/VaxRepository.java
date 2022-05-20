@@ -56,8 +56,7 @@ public class VaxRepository {
                         ("from SupportStaff sup where sup.dni = :dni").setParameter("dni", dni).uniqueResultOptional();
 
     }
-    public Optional<Centre> getCentreByName(String name) {
-        //Fran
+    public Optional<Centre> getCentreByName(String name){
         return this.getSession().createQuery("from Centre c where c.name = :name")
                 .setParameter("name",name).uniqueResultOptional();
     }
@@ -73,17 +72,12 @@ public class VaxRepository {
         return getSession().createQuery("FROM Nurse n " +
                                                   "WHERE n.experience > :years")
                         .setParameter("years", years).getResultList();
-        //fran
     }
-    // @return Una lista con los <code>n</code> centros que más staff tiene
     public List<Staff> getStaffWithName(String name) {
         return getSession().createQuery("FROM Staff s " +
                         "WHERE s.fullName like concat('%', :name, '%')")
-                .setParameter("name",  "%" + name + "%").getResultList();
+                .setParameter("name",   name ).getResultList();
 
-        //fran
-        //from Cat as cat where cat.mate.name like '%s%'
-        // es asi el uso del like
     }
     public List<Centre> getCentresTopNStaff(int n) {
         return getSession().createQuery("SELECT c " +
@@ -91,12 +85,10 @@ public class VaxRepository {
                                                   "GROUP BY c.id " +
                                                   "ORDER BY count(c.id) desc")
                 .setMaxResults(n).getResultList();
-        //fran
-        //CONSULTAR SI ESTA BIEN LA CONSULTA
     }
 
     public List<Patient> getAllPatients() {
-        return getSession().createQuery("from Patient").getResultList(); //joaquin
+        return getSession().createQuery("from Patient").getResultList();
     }
 
     public List<Nurse> getNurseNotShot() {
@@ -104,39 +96,23 @@ public class VaxRepository {
                 "FROM Nurse n " +
                 "WHERE n.dni not in (SELECT nur.dni " +
                                     "FROM Shot s JOIN  s.nurse nur )").getResultList();
-        //fran
-        //
     }
 
-    /**
-     * @return Una lista de las vacunas de las que no se aplicaron dosis
-     */
     public List<Vaccine> getUnappliedVaccines() {
         return  getSession().createQuery("SELECT vaccine " +
                 "FROM Vaccine vaccine LEFT JOIN Shot shot ON shot.vaccine.id = vaccine.id " +
-                "WHERE shot.vaccine.id IS NULL").getResultList(); //joaquin
+                "WHERE shot.vaccine.id IS NULL").getResultList();
     }
-    /**
-     * @return El centro que más vacunas aplico
-     */
+
     public Centre getTopShotCentre() {
-            List<Centre> c = getSession().createQuery("select s.centre " + //siempre poner un espacion al final\n" +
+            List<Centre> c = getSession().createQuery("select s.centre " +
                                                 "from Shot s " +
                                                 "group by s.centre " +
                                                 "order by count(s.centre.id) desc").getResultList();
             return c.get(0);
         }
 
-    /**
-     * @return El area de Support Staff con menor cantidad de empleados
-     */
     public String getLessEmployeesSupportStaffArea() {
-        /*List<SupportStaff> areas =  getSession().createQuery("select s "+//siempre poner un espacion al final
-                "from SupportStaff as s "+
-                "group by s.area "+
-                "order by count(s.area) asc").getResultList();
-        SupportStaff area = (SupportStaff) areas.get(0);
-        return area.getArea();*/
         List<String> areas =  getSession().createQuery("select s.area "+//siempre poner un espacion al final
                 "from SupportStaff s "+
                 "group by s.area "+

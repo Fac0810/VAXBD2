@@ -24,14 +24,6 @@ public class VaxServiceImpl implements VaxService{
         repository.save(patient);
 
         return patient;
-        /*Patient patient = new Patient(email, fullname, password, dayOfBirth);
-        try {
-            repository.save(patient);
-        }
-        catch(Exception e){
-            throw new VaxException("Constraint Violation");
-        }
-        return patient;*/
     }
 
     @Override
@@ -82,7 +74,6 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Nurse createNurse(String dni, String fullName, Integer experience) throws VaxException {
-        //Fran
 
         if (this.repository.getNurseByDni(dni) != null ){
             throw new VaxException("Constraint Violation");
@@ -94,7 +85,6 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public SupportStaff createSupportStaff(String dni, String fullName, String area) throws VaxException {
-        //Fran
         if (this.repository.getSupportStaffByDni(dni).isPresent()){
             throw new VaxException("Constraint Violation");
         }
@@ -123,13 +113,11 @@ public class VaxServiceImpl implements VaxService{
 
     @Override
     public Optional<Centre> getCentreByName(String name) throws VaxException {
-        //Fran
         return this.repository.getCentreByName(name);
     }
 
     @Override
     public SupportStaff updateSupportStaff(SupportStaff staff) throws VaxException {
-        //Fran
         try {
             this.repository.save(staff);
         }
@@ -145,7 +133,6 @@ public class VaxServiceImpl implements VaxService{
         this.repository.save(centre);
         return centre;
     }
-    //Fran
 
     @Override
     public Optional<SupportStaff> getSupportStaffByDni(String dni) {
@@ -161,13 +148,11 @@ public class VaxServiceImpl implements VaxService{
     @Override
     public List<Nurse> getNurseWithMoreThanNYearsExperience(int years) {
         return this.repository.getNurseWithMoreThanNYearsExperience(years);
-        //fran
     }
 
     @Override
     public List<Centre> getCentresTopNStaff(int n) {
         return repository.getCentresTopNStaff(n);
-        //fran
     }
 
     @Override
@@ -179,19 +164,16 @@ public class VaxServiceImpl implements VaxService{
     @Override
     public List<Nurse> getNurseNotShot() {
         return repository.getNurseNotShot();
-        //fran
     }
 
     @Override
     public String getLessEmployeesSupportStaffArea() {
         return this.repository.getLessEmployeesSupportStaffArea();
-        //fran
     }
 
     @Override
     public List<Staff> getStaffWithName(String name) {
         return repository.getStaffWithName(name);
-        //fran
     }
 
     @Override
