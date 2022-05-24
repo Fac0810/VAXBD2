@@ -27,10 +27,6 @@ public class Centre {
         this.staff = new ArrayList<>();
     }
 
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
     public Integer getId() {
         return id;
     }
