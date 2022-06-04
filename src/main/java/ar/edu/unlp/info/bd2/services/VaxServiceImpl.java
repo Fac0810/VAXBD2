@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*;
 
+import javax.transaction.Transactional;
+
 
 public class VaxServiceImpl implements VaxService{
     private VaxRepository repository;
@@ -15,6 +17,7 @@ public class VaxServiceImpl implements VaxService{
     }
 
     @Override
+    @Transactional
     public Patient createPatient(String email, String fullname, String password, Date dayOfBirth) throws VaxException {
 
         if (this.repository.getPatientByEmail(email).isPresent()) {
@@ -27,6 +30,7 @@ public class VaxServiceImpl implements VaxService{
     }
 
     @Override
+    @Transactional
     public Vaccine createVaccine(String name) throws VaxException {
         if (this.repository.getVaccineByName(name).isPresent()) {
             throw new VaxException("Constraint Violation");
@@ -39,6 +43,7 @@ public class VaxServiceImpl implements VaxService{
     }
 
     @Override
+    @Transactional
     public Shot createShot(Patient patient, Vaccine vaccine, Date date, Centre centre, Nurse nurse) throws VaxException {
     	Shot shot = new Shot(patient, vaccine, date, centre, nurse);
     	try {
@@ -62,6 +67,7 @@ public class VaxServiceImpl implements VaxService{
     }
 
     @Override
+    @Transactional
     public Centre createCentre(String name) throws VaxException {
         if (this.repository.getCentreByName(name).isPresent()){
             throw new VaxException("Constraint Violation");
@@ -73,6 +79,7 @@ public class VaxServiceImpl implements VaxService{
     }
 
     @Override
+    @Transactional
     public Nurse createNurse(String dni, String fullName, Integer experience) throws VaxException {
 
         if (this.repository.getNurseByDni(dni) != null ){
@@ -84,6 +91,7 @@ public class VaxServiceImpl implements VaxService{
     }
 
     @Override
+    @Transactional
     public SupportStaff createSupportStaff(String dni, String fullName, String area) throws VaxException {
         if (this.repository.getSupportStaffByDni(dni).isPresent()){
             throw new VaxException("Constraint Violation");
@@ -94,6 +102,7 @@ public class VaxServiceImpl implements VaxService{
     }
 
     @Override
+    @Transactional
     public VaccinationSchedule createVaccinationSchedule() throws VaxException {
 
         VaccinationSchedule vaxSchedule = new VaccinationSchedule();
@@ -117,6 +126,7 @@ public class VaxServiceImpl implements VaxService{
     }
 
     @Override
+    @Transactional
     public SupportStaff updateSupportStaff(SupportStaff staff) throws VaxException {
         try {
             this.repository.save(staff);
@@ -129,6 +139,7 @@ public class VaxServiceImpl implements VaxService{
     }
 
     @Override
+    @Transactional
     public Centre updateCentre(Centre centre){
         this.repository.save(centre);
         return centre;
@@ -187,6 +198,7 @@ public class VaxServiceImpl implements VaxService{
     }
 
     @Override
+    @Transactional
     public VaccinationSchedule updateVaccinationSchedule(VaccinationSchedule vs) {
         this.repository.save(vs);
         return vs;
