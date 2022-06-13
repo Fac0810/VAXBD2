@@ -18,6 +18,7 @@ public class Nurse extends Staff {
 
     public Nurse() {
     }
+    
     public Nurse(String fullName, String dni,  Integer experience) {
         super(fullName, dni);
         this.experience = experience;

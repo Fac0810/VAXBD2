@@ -7,8 +7,6 @@ public class SupportStaff extends Staff {
     @Column(name = "area")
     private String area;
 
-
-
     public SupportStaff() {
     }
 
