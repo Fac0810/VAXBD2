@@ -19,6 +19,7 @@ public class VaccinationSchedule {
             joinColumns = {@JoinColumn(name = "vaccinationschedule_id", referencedColumnName="id")},
             inverseJoinColumns = {@JoinColumn(name = "vaccine_id", referencedColumnName="id")}
     )
+    @OrderColumn
     private List<Vaccine> schedule = new ArrayList<Vaccine>();
 
     public VaccinationSchedule() {
