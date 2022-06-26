@@ -1,5 +1,6 @@
 package ar.edu.unlp.info.bd2.util;
 
+
 import ar.edu.unlp.info.bd2.model.*;
 import ar.edu.unlp.info.bd2.services.VaxService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.text.SimpleDateFormat;
 import javax.transaction.Transactional;
 @Transactional
+
 public class DBInitializer {
 
     @Autowired
@@ -493,6 +495,22 @@ public class DBInitializer {
         centre004.addStaff(supportstaff079);
         SupportStaff supportstaff080 = service.createSupportStaff("224845167", "Polion Muñoz", "Orientacion");
         centre002.addStaff(supportstaff080);
+        
+        //agrega Springdata
+        this.service.updateCentre(centre013);
+        this.service.updateCentre(centre012);
+        this.service.updateCentre(centre011);
+        this.service.updateCentre(centre010);
+        this.service.updateCentre(centre009);
+        this.service.updateCentre(centre008);
+        this.service.updateCentre(centre007);
+        this.service.updateCentre(centre006);
+        this.service.updateCentre(centre005);
+        this.service.updateCentre(centre004);
+        this.service.updateCentre(centre003);
+        this.service.updateCentre(centre002);
+        this.service.updateCentre(centre001);
+
         Patient patient001 = service.createPatient("evonnerodrguez217@me.com", "Evonne Rodríguez", "gmn,aadoio1410", sdf.parse("27/12/1941"));
         this.service.createShot(patient001,vaccine003,sdf.parse("25/6/2020"),centre013,nurse049);
         Patient patient002 = service.createPatient("laylasnchez329@gmail.com", "Layla Sánchez", "aasmsus.isr3586", sdf.parse("2/9/1992"));
