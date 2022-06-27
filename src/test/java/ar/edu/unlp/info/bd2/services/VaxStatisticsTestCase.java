@@ -1,7 +1,7 @@
 package ar.edu.unlp.info.bd2.services;
 
 //hibernate
-import ar.edu.unlp.info.bd2.config.AppConfig;
+//import ar.edu.unlp.info.bd2.config.AppConfig;
 //import ar.edu.unlp.info.bd2.config.DBInitializerConfig;
 //import ar.edu.unlp.info.bd2.config.HibernateConfiguration;
 //import ar.edu.unlp.info.bd2.util.DBInitializer;
