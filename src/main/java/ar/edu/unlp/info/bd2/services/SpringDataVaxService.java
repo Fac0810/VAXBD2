@@ -2,12 +2,25 @@ package ar.edu.unlp.info.bd2.services;
 
 import ar.edu.unlp.info.bd2.model.*;//necesita importar esto?
 import ar.edu.unlp.info.bd2.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 public class SpringDataVaxService implements VaxService{
+    @Autowired
+    private CentreRepository centreRepository;
+
+    @Autowired
+    private NurseRepository nurseRepository;
+
+    @Autowired
+    private StaffRepository staffRepository;
+
+    @Autowired
+    private SupportStaffRepository supportStaffRepository;
+
     @Override
     public Patient createPatient(String email, String fullname, String password, Date dayOfBirth) throws VaxException {
         return null;
@@ -35,12 +48,13 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public Centre createCentre(String name) throws VaxException {
-        return null;
+
+        return (Centre) this.centreRepository.save(new Centre(name));
     }
 
     @Override
     public Nurse createNurse(String dni, String fullName, Integer experience) throws VaxException {
-        return null;
+        return (Nurse) this.nurseRepository.save(new Nurse(dni, fullName, experience));
     }
 
     @Override
@@ -60,7 +74,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public Optional<Centre> getCentreByName(String name) throws VaxException {
-        return Optional.empty();
+        return Optional.ofNullable(centreRepository.getCentreByName(name));
     }
 
     @Override
