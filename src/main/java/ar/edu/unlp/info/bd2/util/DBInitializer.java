@@ -4,16 +4,14 @@ package ar.edu.unlp.info.bd2.util;
 import ar.edu.unlp.info.bd2.model.*;
 import ar.edu.unlp.info.bd2.services.VaxService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.text.SimpleDateFormat;
-import javax.transaction.Transactional;
-@Transactional
+import org.springframework.transaction.annotation.Transactional;
+
 
 public class DBInitializer {
 
     @Autowired
     VaxService service;
-
     public void prepareDB() throws Exception {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -1467,5 +1465,7 @@ public class DBInitializer {
         Patient patient322 = service.createPatient("hanancarrasco742@fruit.net", "Hanan Carrasco", "idooac2801", sdf.parse("7/5/1994"));
         this.service.createShot(patient322,vaccine002,sdf.parse("24/4/2020"),centre009,nurse022);
         this.service.createShot(patient322,vaccine002,sdf.parse("4/7/2020"),centre009,nurse022);
+
+
     }
 }

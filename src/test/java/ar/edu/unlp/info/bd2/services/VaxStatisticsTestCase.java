@@ -1,11 +1,5 @@
 package ar.edu.unlp.info.bd2.services;
 
-//hibernate
-//import ar.edu.unlp.info.bd2.config.AppConfig;
-//import ar.edu.unlp.info.bd2.config.DBInitializerConfig;
-//import ar.edu.unlp.info.bd2.config.HibernateConfiguration;
-//import ar.edu.unlp.info.bd2.util.DBInitializer;
-//spring
 import ar.edu.unlp.info.bd2.config.DBInitializerConfig;
 import ar.edu.unlp.info.bd2.config.SpringDataConfiguration;
 import ar.edu.unlp.info.bd2.util.DBInitializer;
@@ -35,11 +29,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-/*@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {AppConfig.class, HibernateConfiguration.class, DBInitializerConfig.class }, loader = AnnotationConfigContextLoader.class)
-@Transactional
-@Rollback(true)
-*/
+
 @Transactional
 @Rollback(true)
 @ExtendWith(SpringExtension.class)
@@ -54,7 +44,6 @@ public class VaxStatisticsTestCase {
     DBInitializer initializer;
 
     @Autowired
-
     @Qualifier("springDataJpaService")
 
     VaxService service;

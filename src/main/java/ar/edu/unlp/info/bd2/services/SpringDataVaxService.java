@@ -1,12 +1,16 @@
 package ar.edu.unlp.info.bd2.services;
 
-import ar.edu.unlp.info.bd2.model.*;//necesita importar esto?
+import ar.edu.unlp.info.bd2.model.*;
 import ar.edu.unlp.info.bd2.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+
 
 public class SpringDataVaxService implements VaxService{
     @Autowired
@@ -21,17 +25,21 @@ public class SpringDataVaxService implements VaxService{
     @Autowired
     private SupportStaffRepository supportStaffRepository;
 
+
     @Override
+    @Transactional
     public Patient createPatient(String email, String fullname, String password, Date dayOfBirth) throws VaxException {
         return null;
     }
 
     @Override
+    @Transactional
     public Vaccine createVaccine(String name) throws VaxException {
         return null;
     }
 
     @Override
+    @Transactional
     public Shot createShot(Patient patient, Vaccine vaccine, Date date, Centre centre, Nurse nurse) throws VaxException {
         return null;
     }
@@ -47,22 +55,26 @@ public class SpringDataVaxService implements VaxService{
     }
 
     @Override
+    @Transactional
     public Centre createCentre(String name) throws VaxException {
 
         return (Centre) this.centreRepository.save(new Centre(name));
     }
 
     @Override
+    @Transactional
     public Nurse createNurse(String dni, String fullName, Integer experience) throws VaxException {
         return (Nurse) this.nurseRepository.save(new Nurse(dni, fullName, experience));
     }
 
     @Override
+    @Transactional
     public SupportStaff createSupportStaff(String dni, String fullName, String area) throws VaxException {
-        return null;
+        return this.supportStaffRepository.save(new SupportStaff(fullName, dni, area));
     }
 
     @Override
+    @Transactional
     public VaccinationSchedule createVaccinationSchedule() throws VaxException {
         return null;
     }
@@ -74,7 +86,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public Optional<Centre> getCentreByName(String name) throws VaxException {
-        return Optional.ofNullable(centreRepository.getCentreByName(name));
+        return Optional.ofNullable(this.centreRepository.getCentreByName(name));
     }
 
     @Override
@@ -83,13 +95,15 @@ public class SpringDataVaxService implements VaxService{
     }
 
     @Override
+    @Transactional
     public Centre updateCentre(Centre centre) {
-        return null;
+        return this.centreRepository.save(centre);
     }
 
     @Override
     public Optional<SupportStaff> getSupportStaffByDni(String dni) {
-        return Optional.empty();
+
+        return Optional.ofNullable(this.supportStaffRepository.getSupportStaffByDni(dni));
     }
 
     @Override
@@ -138,6 +152,7 @@ public class SpringDataVaxService implements VaxService{
     }
 
     @Override
+    @Transactional
     public VaccinationSchedule updateVaccinationSchedule(VaccinationSchedule schedule) {
         return null;
     }
