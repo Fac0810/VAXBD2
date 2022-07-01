@@ -44,12 +44,18 @@ public class SpringDataVaxService implements VaxService{
     @Override
     @Transactional
     public Patient createPatient(String email, String fullname, String password, Date dayOfBirth) throws VaxException {
+        if (this.patientRepository.getPatientByEmail(email).isPresent()) {
+            throw new VaxException("Constraint Violation");
+        }
         return (Patient) this.patientRepository.save(new Patient(email, fullname, password, dayOfBirth));
     }
 
     @Override
     @Transactional
     public Vaccine createVaccine(String name) throws VaxException {
+        if (this.vaccineRepository.getVaccineByName(name).isPresent()) {
+            throw new VaxException("Constraint Violation");
+        }
         return (Vaccine) this.vaccineRepository.save(new Vaccine(name));
     }
 
@@ -84,7 +90,7 @@ public class SpringDataVaxService implements VaxService{
         if (this.nurseRepository.getNurseByDni(dni) != null ){
             new VaxException("Constraint Violation");
         }
-        return (Nurse) this.nurseRepository.save(new Nurse(dni, fullName, experience));
+        return (Nurse) this.nurseRepository.save(new Nurse(fullName,dni , experience));
     }
 
     @Override
