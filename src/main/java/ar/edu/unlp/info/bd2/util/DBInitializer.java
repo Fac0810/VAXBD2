@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.text.SimpleDateFormat;
 import org.springframework.transaction.annotation.Transactional;
 
-
+@Transactional
 public class DBInitializer {
 
     @Autowired
