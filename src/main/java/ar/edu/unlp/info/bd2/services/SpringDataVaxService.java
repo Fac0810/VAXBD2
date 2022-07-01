@@ -20,38 +20,55 @@ public class SpringDataVaxService implements VaxService{
     private NurseRepository nurseRepository;
 
     @Autowired
+    private PatientRepository patientRepository;
+
+    @Autowired
+    private ShotRepository shotRepository;
+
+    @Autowired
+    private ShotCertificateRepository shotCertificateRepository;
+
+    @Autowired
     private StaffRepository staffRepository;
 
     @Autowired
     private SupportStaffRepository supportStaffRepository;
 
+    @Autowired
+    private VaccineRepository vaccineRepository;
+
+    @Autowired
+    private VaccinationScheduleRepository vaccinationScheduleRepository;
+
 
     @Override
     @Transactional
     public Patient createPatient(String email, String fullname, String password, Date dayOfBirth) throws VaxException {
-        return null;
+        return (Patient) this.patientRepository.save(new Patient(email, fullname, password, dayOfBirth));
     }
 
     @Override
     @Transactional
     public Vaccine createVaccine(String name) throws VaxException {
-        return null;
+        return (Vaccine) this.vaccineRepository.save(new Vaccine(name));
     }
 
     @Override
     @Transactional
     public Shot createShot(Patient patient, Vaccine vaccine, Date date, Centre centre, Nurse nurse) throws VaxException {
-        return null;
+        return (Shot) this.shotRepository.save(new Shot(patient, vaccine, date, centre, nurse));
     }
 
     @Override
     public Optional<Patient> getPatientByEmail(String email) {
-        return Optional.empty();
+        return this.patientRepository.getPatientByEmail(email);
     }
 
     @Override
     public Optional<Vaccine> getVaccineByName(String name) {
-        return Optional.empty();
+
+        return this.vaccineRepository.getVaccineByName(name);
+
     }
 
     @Override
@@ -76,12 +93,12 @@ public class SpringDataVaxService implements VaxService{
     @Override
     @Transactional
     public VaccinationSchedule createVaccinationSchedule() throws VaxException {
-        return null;
+        return this.vaccinationScheduleRepository.save(new VaccinationSchedule());
     }
 
     @Override
     public VaccinationSchedule getVaccinationScheduleById(Long id) throws VaxException {
-        return null;
+        return this.vaccinationScheduleRepository.getVaccinationScheduleById(id);
     }
 
     @Override
@@ -91,7 +108,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public SupportStaff updateSupportStaff(SupportStaff staff) throws VaxException {
-        return null;
+        return this.supportStaffRepository.save(staff);
     }
 
     @Override
@@ -108,7 +125,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public List<Patient> getAllPatients() {
-        return null;
+        return this.patientRepository.findAll();
     }
 
     @Override
@@ -143,7 +160,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public List<Vaccine> getUnappliedVaccines() {
-        return null;
+        return this.vaccineRepository.getUnappliedVaccines();
     }
 
     @Override
@@ -154,6 +171,6 @@ public class SpringDataVaxService implements VaxService{
     @Override
     @Transactional
     public VaccinationSchedule updateVaccinationSchedule(VaccinationSchedule schedule) {
-        return null;
+        return this.vaccinationScheduleRepository.save(schedule);
     }
 }
