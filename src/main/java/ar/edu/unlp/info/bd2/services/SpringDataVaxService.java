@@ -163,7 +163,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public String getLessEmployeesSupportStaffArea() {
-        return null;
+        return this.supportStaffRepository.getLessEmployeesSupportStaffArea().get(0);
     }
 
     @Override
