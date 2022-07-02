@@ -143,7 +143,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public List<Nurse> getNurseWithMoreThanNYearsExperience(int years) {
-        return null;
+        return this.nurseRepository.getNurseWithMoreThanNYearsExperience(years);
     }
 
     @Override
@@ -168,7 +168,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public List<Staff> getStaffWithName(String name) {
-        return null;
+        return this.staffRepository.getStaffWithName(name);
     }
 
     @Override
