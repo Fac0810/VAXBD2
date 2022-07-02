@@ -3,6 +3,7 @@ package ar.edu.unlp.info.bd2.services;
 import ar.edu.unlp.info.bd2.model.*;
 import ar.edu.unlp.info.bd2.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -147,7 +148,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public List<Centre> getCentresTopNStaff(int n) {
-        return null;
+        return this.centreRepository.getCentresTopNStaff(PageRequest.of(0, n));
     }
 
     @Override
