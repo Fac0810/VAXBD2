@@ -153,7 +153,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public Centre getTopShotCentre() {
-        return null;
+        return this.shotRepository.getTopShotCentre(PageRequest.of(0, 1));
     }
 
     @Override
