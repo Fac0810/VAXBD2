@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SupportStaffRepository extends CrudRepository<SupportStaff, Long> {
     SupportStaff getSupportStaffByDni(String dni);
-    @Query("select s.area "+//siempre poner un espacion al final
+    @Query("select s.area "+
             "from SupportStaff s "+
             "group by s.area "+
             "order by count(s.area) asc")

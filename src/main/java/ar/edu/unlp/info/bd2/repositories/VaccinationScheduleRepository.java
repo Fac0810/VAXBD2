@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface VaccinationScheduleRepository extends CrudRepository<VaccinationSchedule, Long> {
-    VaccinationSchedule getVaccinationScheduleById(Long id);
+
 }

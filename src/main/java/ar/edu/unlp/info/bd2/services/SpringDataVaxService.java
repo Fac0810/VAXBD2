@@ -4,8 +4,8 @@ import ar.edu.unlp.info.bd2.model.*;
 import ar.edu.unlp.info.bd2.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.Date;
 import java.util.List;
@@ -48,7 +48,7 @@ public class SpringDataVaxService implements VaxService{
         if (this.patientRepository.getPatientByEmail(email).isPresent()) {
             throw new VaxException("Constraint Violation");
         }
-        return (Patient) this.patientRepository.save(new Patient(email, fullname, password, dayOfBirth));
+        return this.patientRepository.save(new Patient(email, fullname, password, dayOfBirth));
     }
 
     @Override
@@ -57,13 +57,13 @@ public class SpringDataVaxService implements VaxService{
         if (this.vaccineRepository.getVaccineByName(name).isPresent()) {
             throw new VaxException("Constraint Violation");
         }
-        return (Vaccine) this.vaccineRepository.save(new Vaccine(name));
+        return this.vaccineRepository.save(new Vaccine(name));
     }
 
     @Override
     @Transactional
     public Shot createShot(Patient patient, Vaccine vaccine, Date date, Centre centre, Nurse nurse) throws VaxException {
-        return (Shot) this.shotRepository.save(new Shot(patient, vaccine, date, centre, nurse));
+        return this.shotRepository.save(new Shot(patient, vaccine, date, centre, nurse));
     }
 
     @Override
@@ -82,7 +82,7 @@ public class SpringDataVaxService implements VaxService{
     @Transactional
     public Centre createCentre(String name) throws VaxException {
 
-        return (Centre) this.centreRepository.save(new Centre(name));
+        return this.centreRepository.save(new Centre(name));
     }
 
     @Override
@@ -91,7 +91,7 @@ public class SpringDataVaxService implements VaxService{
         if (this.nurseRepository.getNurseByDni(dni) != null ){
             new VaxException("Constraint Violation");
         }
-        return (Nurse) this.nurseRepository.save(new Nurse(fullName,dni , experience));
+        return this.nurseRepository.save(new Nurse(fullName,dni , experience));
     }
 
     @Override
@@ -111,7 +111,7 @@ public class SpringDataVaxService implements VaxService{
 
     @Override
     public VaccinationSchedule getVaccinationScheduleById(Long id) throws VaxException {
-        return this.vaccinationScheduleRepository.getVaccinationScheduleById(id);
+        return this.vaccinationScheduleRepository.findById(id).get();
     }
 
     @Override
@@ -120,6 +120,7 @@ public class SpringDataVaxService implements VaxService{
     }
 
     @Override
+    @Transactional
     public SupportStaff updateSupportStaff(SupportStaff staff) throws VaxException {
         return this.supportStaffRepository.save(staff);
     }
